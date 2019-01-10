@@ -107,7 +107,7 @@ class Livre
         return $this->isbn;
     }
 
-    public function setIsbn(?bigint $isbn): self
+    public function setIsbn(?string $isbn): self
     {
         $this->isbn = $isbn;
 
