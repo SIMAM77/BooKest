@@ -32,6 +32,11 @@ class Livre
     private $synopsis;
 
     /**
+     * @ORM\Column(type="bigint", nullable=false)
+     */
+    private $isbn;
+
+    /**
      * @ORM\Column(type="float", nullable=true)
      */
     private $score;
@@ -97,12 +102,24 @@ class Livre
         return $this;
     }
 
-    public function getScore(): ?float
+    public function getIsbn(): ?bigint
+    {
+        return $this->isbn;
+    }
+
+    public function setIsbn(?bigint $isbn): self
+    {
+        $this->isbn = $isbn;
+
+        return $this;
+    }
+
+    public function getScore(): ?bigint
     {
         return $this->score;
     }
 
-    public function setScore(?float $score): self
+    public function setScore(?bigint $score): self
     {
         $this->score = $score;
 
