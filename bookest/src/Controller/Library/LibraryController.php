@@ -43,30 +43,69 @@ class LibraryController extends Controller
         $response = curl_exec($fCurl);
         curl_close($fCurl);
         $res = json_decode($response);
-        
+
         dump($res);
 
-        $oMain = $res->items[0]->volumeInfo;
+        if(isset($res->items)){
 
-        $title = $oMain->title;
-        $author = $oMain->authors[0];
-        $synopsis = "";
-        $isbn = $sIsbn;
-        $genre = "";
+            $oMain = $res->items[0]->volumeInfo;
 
-        $livre
-            ->setTitle($title)
-            ->setAuthor($author)
-            ->setSynopsis($synopsis)
-            ->setIsbn($isbn)
-            ->setStatus("0")
-            ->setGenre($genre);
-        $oEm->persist($livre); 
-        $oEm->flush();
-  
-          $request->getSession()->getFlashBag()->add('notice', 'Le livre a bien été ajouté à votre bibliothèque personnelle.');
-  
-          // On redirige vers la page de visualisation de l'annonce nouvellement créée
+            $title = $oMain->title;
+
+            if(isset($res->authors)){
+                
+                for ($i = 1; $i <= 10; $i++) {
+                    $author = $oMain->authors[$i];
+                }
+
+            } else {
+
+                $author = "Auteur Inconnu";
+
+            }
+
+            if(isset($res->description)){
+
+                $synopsis = $oMain->description;
+
+            } else {
+
+                $synopsis = "Résumé indisponible";
+
+            }
+
+            $isbn = $sIsbn;
+
+            if(isset($res->categories)){
+
+                for ($i = 1; $i <= 10; $i++) {
+                    $genre = $oMain->categories[$i];
+                }
+
+            } else {
+
+                $genre = "Inconnu";
+
+            }
+
+            $livre
+                ->setTitle($title)
+                ->setAuthor($author)
+                ->setSynopsis($synopsis)
+                ->setIsbn($isbn)
+                ->setStatus("0")
+                ->setGenre($genre);
+            $oEm->persist($livre); 
+            $oEm->flush();
+            
+            $request->getSession()->getFlashBag()->add('notice', 'Le livre a bien été ajouté à votre bibliothèque personnelle.');
+
+        } else {
+
+            $request->getSession()->getFlashBag()->add('notice', 'Le livre n\'existe pas, veuillez réessayer.');
+
+        }
+
       }
 
         return $this->render('Library/index.html.twig', array(

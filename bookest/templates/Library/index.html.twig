@@ -1,5 +1,20 @@
 <html>
     <body>
+    {# pass a string argument to get only the messages of that type #}
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+    
+    {# pass an array argument to get the messages of those types  #}
+    {% for label, messages in app.flashes(['warning', 'error']) %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
     <h1>Ma bibliothèque personnelle :</h1>
     <h3>Mes livres personnels :</h3>
         <ul>
