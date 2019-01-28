@@ -12,8 +12,8 @@ class LibraryController extends Controller
 {
     public function Index()
     {
-        $sSecret = "AIzaSyAhuwOyHCANRqaNa66WtUdyrfFtK2-7S9M";
-        $url="https://www.googleapis.com/books/v1/volumes?q=Couleur&maxresults=40&key=" . $sSecret . "";
+        $s_secret = "AIzaSyAhuwOyHCANRqaNa66WtUdyrfFtK2-7S9M";
+        $s_url="https://www.googleapis.com/books/v1/volumes?q=Couleur&maxresults=40&key=" . $s_secret . "";
 
         $curl = curl_init();
         $opts = [
@@ -29,10 +29,10 @@ class LibraryController extends Controller
         dump($res);
 
         $oEm = $this->getDoctrine()->getManager();
-        $aQuery = $oEm->createQuery('SELECT l FROM App\Entity\Livre l')->getResult();
+        $a_query = $oEm->createQuery('SELECT l FROM App\Entity\Livre l')->getResult();
 
         return $this->render('Library/index.html.twig', array(
-            'aQuery' => $aQuery[0]
+            'aQuery' => $a_query[0]
         ));
     }
 }

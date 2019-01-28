@@ -18,12 +18,12 @@ class PlaceController extends Controller
      */
     public function getPlaces(): View
     {
-        $place = $this->getDoctrine()->getRepository(Place::class)->findAll();
+        $o_place = $this->getDoctrine()->getRepository(Place::class)->findAll();
 
-        if(empty($place)){
+        if(empty($o_place)){
             return View::create("Il n'y a aucune ville à afficher.", Response::HTTP_NOT_FOUND);
         } else {
-            return View::create($place, Response::HTTP_OK);
+            return View::create($o_place, Response::HTTP_OK);
         }
         
     }
@@ -34,14 +34,14 @@ class PlaceController extends Controller
      */
     public function getPlace(int $placeId): View
     {
-        $place = $this->getDoctrine()->getRepository(Place::class)->findById($placeId);
+        $o_place = $this->getDoctrine()->getRepository(Place::class)->findById($placeId);
 
-        $error = "Il n'y a aucune ville à afficher";
+        $s_error = "Il n'y a aucune ville à afficher";
 
-        if(empty($place)){
-            return View::create($error, Response::HTTP_NOT_FOUND);
+        if(empty($o_place)){
+            return View::create($s_error, Response::HTTP_NOT_FOUND);
         } else {
-            return View::create($place, Response::HTTP_OK);
+            return View::create($o_place, Response::HTTP_OK);
         }
         
     }
