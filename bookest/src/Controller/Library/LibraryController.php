@@ -38,16 +38,13 @@ class LibraryController extends Controller
 
     public function BookListPage()
     {
-        $tab_category = ['Arts & Music', 'Biographies', 'Business', 'Kids', 'Comics', 'Computers', 'Cooking' ];
-        $sSecret = "AIzaSyAhuwOyHCANRqaNa66WtUdyrfFtK2-7S9M";
+        $a_category = ['Arts & Music', 'Biographies', 'Business', 'Kids', 'Comics', 'Computers', 'Cooking' ];
+        $s_secret = "AIzaSyAhuwOyHCANRqaNa66WtUdyrfFtK2-7S9M";
 
-        $tab_url = [];
-        $tab_tamere = [];
-        foreach($tab_category as $api_parameter){
-            $url="https://www.googleapis.com/books/v1/volumes?q=subject:" . $api_parameter . "&maxresults=10&key=" . $sSecret . "";
-            // $url="https://www.googleapis.com/books/v1/volumes?q=subject:" . 'Kids' . "&maxresults=2&key=" . $sSecret . "";
-            
-
+        $a_url = [];
+        $a_datas = [];
+        foreach($a_category as $api_parameter){
+            $url="https://www.googleapis.com/books/v1/volumes?q=subject:" . $api_parameter . "&maxresults=10&key=" . $s_secret . "";
             $curl = curl_init();
             $opts = [
                 CURLOPT_URL => $url,
@@ -59,19 +56,16 @@ class LibraryController extends Controller
     
             $res = json_decode($response);
             if(!empty($res)){
-                $tab_url[] = $res;
+                $a_url[] = $res;
             }
 
-            $tab_book = [];
-            $tab_toto = [];
-            $i = 0;
-            
-            foreach ($tab_url as $category) {
+            $a_book = [];
+            foreach ($a_url as $category) {
                 if (!empty($category)) {
                     foreach($category->items as $book){    
                         if(!empty($book->volumeInfo->categories) && in_array($api_parameter, $book->volumeInfo->categories)){                      
                                             
-                            $tab_book[] = [
+                            $a_book[] = [
                                 'titre'       => !empty($book->volumeInfo->title) ? $book->volumeInfo->title : 'null',
                                 'auteur'      => !empty($book->volumeInfo->authors) ? $book->volumeInfo->authors : 'null',
                                 'description' => !empty($book->volumeInfo->description) ? $book->volumeInfo->description : 'null',
@@ -80,73 +74,15 @@ class LibraryController extends Controller
                                 'publication' => !empty($book->volumeInfo->publishedDate) ? $book->volumeInfo->publishedDate : 'null',
                                 'isbn'        => !empty($book->volumeInfo->industryIdentifiers[0]->identifier) ? $book->volumeInfo->industryIdentifiers[0]->identifier : 'null',
                             ];
-                            $tab_tamere[$api_parameter] = $tab_book;
+                            $a_datas[$api_parameter] = $a_book;
                         }          
                     }
                 }          
             }
         }
-        // dump($tab_tamere);
-
         return $this->render('Library/catalogue.html.twig', [
-            'toto' => 'toto',
-            'elements' => $tab_tamere
-            ]
+            'elements' => $a_datas
+        ]
         );
     }
-    // public function BookListPage()
-    // {
-    //     $tab_category = ['Arts & Music', 'Biographies', 'Business', 'Kids', 'Comics', 'Computers of Techn', 'Cooking', 'Hobbies & Crafts', 'Edu & Reference', 'Gay & Lesbian' ];
-    //     $sSecret = "AIzaSyAhuwOyHCANRqaNa66WtUdyrfFtK2-7S9M";
-
-    //     $tab_url = [];
-    //     foreach($tab_category as $api_parameter){
-    //         $url="https://www.googleapis.com/books/v1/volumes?q=subject:" . $api_parameter . "&maxresults=10&key=" . $sSecret . "";
-    //         // $url="https://www.googleapis.com/books/v1/volumes?q=subject:" . 'Kids' . "&maxresults=2&key=" . $sSecret . "";
-            
-
-    //         $curl = curl_init();
-    //         $opts = [
-    //             CURLOPT_URL => $url,
-    //             CURLOPT_RETURNTRANSFER => true,
-    //         ];
-    //         curl_setopt_array($curl, $opts);
-    //         $response = curl_exec($curl);
-    //         curl_close($curl);
-    
-    //         $res = json_decode($response);
-    //         $tab_url[$api_parameter] = $res;
-    //     }
-    
-    //     $tab_book = [];
-    //     $tab_toto = [];
-    //     $i = 0;
-    //     $tab_tamere = [];
-    //     foreach ($tab_url as $key => $category) {
-    //         if (!empty($category)) {
-    //             foreach($category->items as $book){    
-    //                 if(!empty($book->volumeInfo->categories) && in_array($key, $book->volumeInfo->categories)){                      
-                                         
-    //                     $tab_book[] = [
-    //                         'titre'       => !empty($book->volumeInfo->title) ? $book->volumeInfo->title : 'null',
-    //                         'auteur'      => !empty($book->volumeInfo->authors) ? $book->volumeInfo->authors : 'null',
-    //                         'description' => !empty($book->volumeInfo->description) ? $book->volumeInfo->description : 'null',
-    //                         'editeur'     => !empty($book->volumeInfo->publisher) ? $book->volumeInfo->publisher : 'null',
-    //                         'genre'       => !empty($book->volumeInfo->categories) ? $book->volumeInfo->categories : 'null',
-    //                         'publication' => !empty($book->volumeInfo->publishedDate) ? $book->volumeInfo->publishedDate : 'null',
-    //                         'isbn'        => !empty($book->volumeInfo->industryIdentifiers[0]->identifier) ? $book->volumeInfo->industryIdentifiers[0]->identifier : 'null',
-    //                     ];
-    //                     $tab_tamere[$key] = $tab_book;
-    //                 }          
-    //             }
-    //         }          
-    //     }
-    //     dump($tab_tamere);
-
-    //     return $this->render('Library/catalogue.html.twig', [
-    //         'toto' => 'toto',
-    //         'elements' => $tab_book
-    //         ]
-    //     );
-    // }
 }
