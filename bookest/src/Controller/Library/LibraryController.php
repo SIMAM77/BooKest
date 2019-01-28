@@ -43,9 +43,7 @@ class LibraryController extends Controller
         $response = curl_exec($fCurl);
         curl_close($fCurl);
         $res = json_decode($response);
-
-      
-
+          
         if(isset($res->items)){
 
             $oMain = $res->items[0]->volumeInfo;
