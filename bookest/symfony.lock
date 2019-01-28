@@ -95,6 +95,9 @@
             "ref": "258300d52be6ad59b32a888d5ddafbf9638540ff"
         }
     },
+    "friendsofsymfony/user-bundle": {
+        "version": "v2.1.2"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -102,7 +105,7 @@
         "version": "1.24.0"
     },
     "nikic/php-parser": {
-        "version": "v4.1.0"
+        "version": "v4.1.1"
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"

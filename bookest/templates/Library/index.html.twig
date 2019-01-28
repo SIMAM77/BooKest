@@ -1,10 +1,31 @@
 <html>
     <body>
+    {# pass a string argument to get only the messages of that type #}
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+    
+    {# pass an array argument to get the messages of those types  #}
+    {% for label, messages in app.flashes(['warning', 'error']) %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
     <h1>Ma bibliothèque personnelle :</h1>
-    <h3>Mes livres en cours de lecture :</h3>
+    <h3>Mes livres personnels :</h3>
         <ul>
-            <li>{{ aQuery.title }}</li>
+        {% for sResult in aResult %}
+            <li>{{ sResult.title }}</li>
+        {% endfor %}
         </ul>
-    <h3>Mes livres lus :</h3>
+    <h3>Ajouter un nouveau livre :</h3>
+        <form method="POST" action="#">
+            <input type="bigint" name="isbn">
+            <input type="submit">
+        </form>
     </body>
 </html>
