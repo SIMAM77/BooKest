@@ -27,3 +27,73 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    admin.biblio_rue:
+        class: App\Admin\BiblioRueAdmin
+        arguments: [~, App\Entity\BiblioRue, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: BiblioRue }
+        public: true
+
+    admin.biblio_user:
+        class: App\Admin\BiblioUserAdmin
+        arguments: [~, App\Entity\BiblioUser, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: BiblioUser }
+        public: true
+
+    admin.biblio_user_quantity:
+        class: App\Admin\BiblioUserQuantityAdmin
+        arguments: [~, App\Entity\BiblioUserQuantity, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: BiblioUserQuantity }
+        public: true
+
+    admin.cercle:
+        class: App\Admin\CercleAdmin
+        arguments: [~, App\Entity\Cercle, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Cercle }
+        public: true
+
+    admin.livre:
+        class: App\Admin\LivreAdmin
+        arguments: [~, App\Entity\Livre, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Livre }
+        public: true
+
+    admin.notification:
+        class: App\Admin\NotificationAdmin
+        arguments: [~, App\Entity\Notification, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Notification }
+        public: true
+
+    admin.place:
+        class: App\Admin\PlaceAdmin
+        arguments: [~, App\Entity\Place, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Place }
+        public: true
+
+    admin.relation_emprunteur_preteur:
+        class: App\Admin\RelationEmprunteurPreteurAdmin
+        arguments: [~, App\Entity\RelationEmprunteurPreteur, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: RelationEmprunteurPreteur }
+        public: true
+
+    admin.user:
+        class: App\Admin\UserAdmin
+        arguments: [~, App\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: User }
+        public: true
+
+    admin.users:
+        class: App\Admin\UsersAdmin
+        arguments: [~, App\Entity\Users, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Users }
+        public: true
