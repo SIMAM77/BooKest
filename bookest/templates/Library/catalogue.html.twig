@@ -1,0 +1,31 @@
+<html>
+    <body>
+    <h1>Liste des livres</h1>
+    <h3>Infos générales</h3>
+    
+
+        {% for key, category in elements %}
+        <div>
+            <h2>{{ key }}</h2>
+            {% for book in category %}
+            <ul style='background:lightblue; float:left; max-width:20%; margin-left:20px;'>
+                <h3>{{book.titre}}</h3>
+                <li>auteur :
+                    {% for auteur in book.auteur %}
+                        {{auteur}}
+                    {% endfor %}
+                </li>
+                <li>description : {{book.description}}</li>
+                <li>editeur : {{book.editeur}}</li>
+                <li>genre : 
+                    {% for genre in book.genre %}
+                        {{genre}}
+                    {% endfor %}
+                </li>
+                <li>publication : {{book.publication}}</li>
+            </ul>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </body>
+</html>
