@@ -1,2 +1,11 @@
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+index:
+    path: /
+    controller: App\Controller\Library\LibraryController::Index
+
+book_list_page:
+    path: /catalogue
+    controller: App\Controller\Library\LibraryController::BookListPage
+
