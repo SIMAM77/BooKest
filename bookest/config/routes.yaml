@@ -9,3 +9,7 @@ book_list_page:
     path: /catalogue
     controller: App\Controller\Library\LibraryController::BookListPage
 
+book_search_page:
+    path: /search
+    controller: App\Controller\Library\LibraryController::searchBook
+
