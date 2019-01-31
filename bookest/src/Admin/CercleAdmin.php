@@ -40,7 +40,6 @@ final class CercleAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-			->add('id')
 			->add('id_user')
 			->add('genre')
 			;

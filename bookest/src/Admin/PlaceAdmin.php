@@ -38,7 +38,6 @@ final class PlaceAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-			->add('id')
 			->add('name')
 			;
     }

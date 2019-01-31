@@ -42,7 +42,6 @@ final class BiblioUserAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-			->add('id')
 			->add('id_user')
 			->add('status')
 			->add('genre')

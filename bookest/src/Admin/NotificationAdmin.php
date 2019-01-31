@@ -50,7 +50,6 @@ final class NotificationAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-			->add('id')
 			->add('id_emprunteur')
 			->add('id_preteur')
 			->add('id_livre')

@@ -54,7 +54,6 @@ final class LivreAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-			->add('id')
 			->add('title')
 			->add('author')
 			->add('synopsis')

@@ -48,7 +48,6 @@ final class BiblioRueAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-			->add('id')
 			->add('name')
 			->add('adress')
 			->add('photo')
