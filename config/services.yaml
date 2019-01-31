@@ -4,7 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: 'en'
+    locale: 'fr'
 
 services:
     # default configuration for services in *this* file
@@ -26,3 +26,88 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    admin.biblio_rue:
+        class: App\Admin\BiblioRueAdmin
+        arguments: [~, App\Entity\BiblioRue, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Libraries, label: BiblioRue }
+        public: true
+
+    admin.biblio_user:
+        class: App\Admin\BiblioUserAdmin
+        arguments: [~, App\Entity\BiblioUser, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Libraries, label: BiblioUser }
+        public: true
+
+    admin.biblio_user_quantity:
+        class: App\Admin\BiblioUserQuantityAdmin
+        arguments: [~, App\Entity\BiblioUserQuantity, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Libraries, label: BiblioUserQuantity }
+        public: true
+
+    admin.cercle:
+        class: App\Admin\CercleAdmin
+        arguments: [~, App\Entity\Cercle, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Tables, label: Cercle }
+        public: true
+
+    admin.livre:
+        class: App\Admin\LivreAdmin
+        arguments: [~, App\Entity\Livre, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Libraries, label: Livre }
+        public: true
+
+    admin.notification:
+        class: App\Admin\NotificationAdmin
+        arguments: [~, App\Entity\Notification, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Tables, label: Notification }
+        public: true
+
+    admin.place:
+        class: App\Admin\PlaceAdmin
+        arguments: [~, App\Entity\Place, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Tables, label: Place }
+        public: true
+
+    admin.relation_emprunteur_preteur:
+        class: App\Admin\RelationEmprunteurPreteurAdmin
+        arguments: [~, App\Entity\RelationEmprunteurPreteur, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Tables, label: RelationEmprunteurPreteur }
+        public: true
+        
+    admin.users:
+        class: App\Admin\UsersAdmin
+        arguments: [~, App\Entity\Users, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Tables, label: Users }
+        public: true
+
+    sonata.block.service.stats:
+        class: App\Admin\Block\StatsBlockService
+        arguments: 
+           - "sonata.block.service.stats"
+           - "@templating"
+           - "@sonata.admin.pool"
+           - "@doctrine.orm.entity_manager"
+           - "@security.token_storage"
+        tags:
+            - { name: sonata.block }
+
+    sonata.block.service.share_list:
+        class: App\Admin\Block\ShareListService
+        arguments: 
+           - "sonata.block.service.share_list"
+           - "@templating"
+           - "@sonata.admin.pool"
+           - "@doctrine.orm.entity_manager"
+           - "@security.token_storage"
+        tags:
+            - { name: sonata.block }
