@@ -17,7 +17,7 @@
                     <td class="text-center">User {{ relation.rep_id_preteur }}</td>
                     <td class="text-center">Livre {{ relation.rep_id_livre }}</td>
                     <td class="text-center">User {{ relation.rep_id_emprunteur }}</td>                    
-                    <td class="text-center">User {{ relation.rep_date_start | date('Y-m-d h:i:s') }}</td>
+                    <td class="text-center">{{ relation.rep_date_start | date('d-m-Y h:i:s') }}</td>
                 {% endfor %}
                     <td class="text-center"><a href="#" class="fa fa-eye"></td>
                 </tr>
