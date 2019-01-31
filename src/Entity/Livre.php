@@ -102,24 +102,24 @@ class Livre
         return $this;
     }
 
-    public function getIsbn(): ?int
+    public function getIsbn(): ?bigint
     {
         return $this->isbn;
     }
 
-    public function setIsbn(?int $isbn): self
+    public function setIsbn(?string $isbn): self
     {
         $this->isbn = $isbn;
 
         return $this;
     }
 
-    public function getScore(): ?int
+    public function getScore(): ?bigint
     {
         return $this->score;
     }
 
-    public function setScore(?int $score): self
+    public function setScore(?bigint $score): self
     {
         $this->score = $score;
 
