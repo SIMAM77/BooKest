@@ -45,8 +45,6 @@ class ShareListService extends AbstractBlockService
         $em = $this->em;
         $s_query = $em->createQuery('SELECT rep FROM App\Entity\RelationEmprunteurPreteur rep');
         $a_relation = $s_query->getScalarResult();
-
-        dump($a_relation);
  
         return $this->renderResponse('Block/share_list.html.twig', array(
             'block'          => $blockContext->getBlock(),
