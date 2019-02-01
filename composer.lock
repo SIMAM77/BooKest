@@ -6691,6 +6691,7 @@
             },
             "dist": {
                 "type": "zip",
+                "url": "https://api.github.com/repos/symfony/web-server-bundle/zipball/8d7c77f58cf8f6d018c4c80cea9e067a83921f1c",
                 "reference": "8d7c77f58cf8f6d018c4c80cea9e067a83921f1c",
                 "shasum": ""
             },
