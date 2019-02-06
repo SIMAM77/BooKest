@@ -1,0 +1,17 @@
+<html>
+    <body>
+    {% for item in elements %}
+   
+    <h1>{{ item.name }}</h1>
+    <ul>
+        <li>id : {{ item.id ? item.id : 'Pas de données' }}</li>
+        <li>name : {{ item.name ? item.name : 'Pas de données' }}</li>
+        <li>adress : {{ item.adress ? item.adress : 'Pas de données' }}</li>
+        <li>photo : {{ item.photo ? item.photo : 'Pas de données' }}</li>
+        <li>geolocalization : {{ item.geolocalization ? item.geolocalization : 'Pas de données' }}</li>
+        <li>score : {{ item.score ? item.score : 'Pas de données' }}</li>
+        <li>comments : {{ item.comments ? item.comments : 'Pas de données' }}</li>
+    </ul>
+    {% endfor %}
+    </body>
+</html>

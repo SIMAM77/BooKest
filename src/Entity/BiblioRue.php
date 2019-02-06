@@ -87,12 +87,12 @@ class BiblioRue
         return $this;
     }
 
-    public function getGeolocalization(): ?float
+    public function getGeolocalization(): ?string
     {
         return $this->geolocalization;
     }
 
-    public function setGeolocalization(float $geolocalization): self
+    public function setGeolocalization(string $geolocalization): self
     {
         $this->geolocalization = $geolocalization;
 

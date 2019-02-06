@@ -9,3 +9,6 @@ book_list_page:
     path: /catalogue
     controller: App\Controller\Library\LibraryController::BookListPage
 
+biblio_rue:
+    path: /map
+    controller: App\Controller\Library\StreetLibraryController::Map
