@@ -12,7 +12,7 @@ return [
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['all' => true, 'test' => true],
     Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['all' => true, 'test' => true],
-    Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],
+    Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['all' => true],
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['all' => true],
     
     Knp\Bundle\MenuBundle\KnpMenuBundle::class => ['all' => true],

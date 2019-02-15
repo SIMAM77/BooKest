@@ -43,17 +43,17 @@ class LibraryController extends Controller
         $response = curl_exec($fCurl);
         curl_close($fCurl);
         $res = json_decode($response);
-          
+
         if(isset($res->items)){
 
             $oMain = $res->items[0]->volumeInfo;
 
             $title = $oMain->title;
 
-            if(isset($res->authors)){
+            if(isset($oMain->authors)){
                 
-                for ($i = 1; $i <= 10; $i++) {
-                    $author = $oMain->authors[$i];
+                foreach($oMain->authors as $i) {
+                    $author = $i;
                 }
 
             } else {
@@ -62,7 +62,7 @@ class LibraryController extends Controller
 
             }
 
-            if(isset($res->description)){
+            if(isset($oMain->description)){
 
                 $synopsis = $oMain->description;
 
@@ -74,10 +74,10 @@ class LibraryController extends Controller
 
             $isbn = $sIsbn;
 
-            if(isset($res->categories)){
+            if(isset($oMain->categories)){
 
-                for ($i = 1; $i <= 10; $i++) {
-                    $genre = $oMain->categories[$i];
+                foreach($oMain->categories as $i) {
+                    $genre = $i;
                 }
 
             } else {
