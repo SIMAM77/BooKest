@@ -1,1 +1,1 @@
-web: $(composer config bin-dir)/heroku-php-apache2 web/
+Could not open input file: echo
