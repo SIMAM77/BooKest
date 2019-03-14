@@ -16,7 +16,7 @@ doctrine:
             collate: utf8mb4_unicode_ci
 
         path: 'ec2-54-247-85-251.eu-west-1.compute.amazonaws.com'
-        dbname: 'bookest_db'
+        dbname: 'd3oa77herjb55b'
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore
