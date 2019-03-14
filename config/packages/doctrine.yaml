@@ -15,8 +15,8 @@ doctrine:
             charset: utf8mb4
             collate: utf8mb4_unicode_ci
 
-        path: 'localhost'
-        dbname: 'bookest'
+        path: 'vlvlnl1grfzh34vj.chr7pe7iynqr.eu-west-1.rds.amazonaws.com'
+        dbname: 'q3sg7n3jljjwkre4'
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore
