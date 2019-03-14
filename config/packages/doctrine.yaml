@@ -8,15 +8,15 @@ parameters:
 doctrine:
     dbal:
         # configure these for your database server
-        driver: 'pdo_pgsql'
-        server_version: '11.2'
+        driver: 'pdo_mysql'
+        server_version: '5.7'
         charset: utf8mb4
         default_table_options:
             charset: utf8mb4
             collate: utf8mb4_unicode_ci
 
-        path: 'ec2-54-247-85-251.eu-west-1.compute.amazonaws.com'
-        dbname: 'd3oa77herjb55b'
+        path: 'localhost'
+        dbname: 'bookest'
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore
