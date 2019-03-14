@@ -15,7 +15,7 @@ doctrine:
             charset: utf8mb4
             collate: utf8mb4_unicode_ci
 
-        path: 'postgres://ycrjfjzqxvxzkm:0f96c7a19724fc3b64ebb0bc2496c14d61be96ff0669e5ee642746e7a03d27c8@ec2-54-247-85-251.eu-west-1.compute.amazonaws.com:5432/d3oa77herjb55b'
+        path: 'ec2-54-247-85-251.eu-west-1.compute.amazonaws.com'
         dbname: 'bookest_db'
     orm:
         auto_generate_proxy_classes: true
