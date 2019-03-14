@@ -3,19 +3,19 @@ parameters:
     # This allows you to run cache:warmup even if your
     # environment variables are not available yet.
     # You should not need to change this value.
-    env(DATABASE_URL): ''
+    env(DATABASE_URL): 'postgres://ycrjfjzqxvxzkm:0f96c7a19724fc3b64ebb0bc2496c14d61be96ff0669e5ee642746e7a03d27c8@ec2-54-247-85-251.eu-west-1.compute.amazonaws.com:5432/d3oa77herjb55b'
 
 doctrine:
     dbal:
         # configure these for your database server
-        driver: 'pdo_mysql'
-        server_version: '5.7'
+        driver: 'pdo_pgsql'
+        server_version: '11.2'
         charset: utf8mb4
         default_table_options:
             charset: utf8mb4
             collate: utf8mb4_unicode_ci
 
-        path: 'localhost'
+        path: 'ec2-54-247-85-251.eu-west-1.compute.amazonaws.com'
         dbname: 'bookest'
     orm:
         auto_generate_proxy_classes: true
