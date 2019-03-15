@@ -69,7 +69,7 @@ class ApiController extends Controller
 
     /**
      * Retrieves a usr resource
-     * @Rest\Get("/book/{userId}")
+     * @Rest\Get("/book/{bookId}")
      */
     public function getBook(int $bookId): View
     {
