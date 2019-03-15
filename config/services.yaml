@@ -69,13 +69,6 @@ services:
             - { name: sonata.admin, manager_type: orm, group: Tables, label: Notification }
         public: true
 
-    admin.place:
-        class: App\Admin\PlaceAdmin
-        arguments: [~, App\Entity\Place, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Tables, label: Place }
-        public: true
-
     admin.relation_emprunteur_preteur:
         class: App\Admin\RelationEmprunteurPreteurAdmin
         arguments: [~, App\Entity\RelationEmprunteurPreteur, ~]
