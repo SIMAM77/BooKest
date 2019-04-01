@@ -110,7 +110,7 @@ class ApiController extends Controller
      * @Rest\View(statusCode=Response::HTTP_CREATED)
      * @Rest\Post("/insert/book/{iISBN}")
      */
-    public function setBook(int $iISBN): View
+    public function setBook(int $iISBN)
     {
         $o_book = $this->getDoctrine()->getRepository(Livre::class)->setIsbn(array('isbn' => $iISBN));
         
