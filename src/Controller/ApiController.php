@@ -9,6 +9,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
 use App\Entity\Users;
 use App\Entity\Livre;
+use App\Entity\BiblioUser;
 
 class ApiController extends Controller
 {
@@ -17,7 +18,7 @@ class ApiController extends Controller
 
     /**
      * Retrieves a user resource
-     * @Rest\Get("/users/")
+     * @Rest\Get("/users")
      */
     public function getUsers(): View
     {
@@ -35,11 +36,11 @@ class ApiController extends Controller
      * Retrieves a usr resource
      * @Rest\Get("/user/{userId}")
      */
-    public function getUser(int $userId): View
+    public function getUserById(int $userId): View
     {
         $o_user = $this->getDoctrine()->getRepository(Users::class)->findById($userId);
 
-        $s_error = "Il n'y a aucune ville à afficher";
+        $s_error = "Il n'y a aucun utilisateur à afficher";
 
         if(empty($o_user)){
             return View::create("Il n'y a aucun utilisateur à afficher.", Response::HTTP_NOT_FOUND);
@@ -52,8 +53,8 @@ class ApiController extends Controller
     // BOOK API CONTROLLER ----------------------------------------------------------------------------
 
     /**
-     * Retrieves a user resource
-     * @Rest\Get("/books/")
+     * Retrieves all books
+     * @Rest\Get("/books")
      */
     public function getBooks(): View
     {
@@ -68,14 +69,30 @@ class ApiController extends Controller
     }
 
     /**
-     * Retrieves a usr resource
+     * Retrieves a book resource
      * @Rest\Get("/book/{bookId}")
      */
     public function getBook(int $bookId): View
     {
         $o_book = $this->getDoctrine()->getRepository(Livre::class)->findById($bookId);
 
-        $s_error = "Il n'y a aucune ville à afficher";
+        $s_error = "Il n'y a aucun livre à afficher";
+
+        if(empty($o_book)){
+            return View::create("Il n'y a aucun livre à afficher.", Response::HTTP_NOT_FOUND);
+        } else {
+            return View::create($o_book, Response::HTTP_OK);
+        }
+        
+    }
+
+    /**
+     * Retrieves all user books resource
+     * @Rest\Get("/user/{userId}/books")
+     */
+    public function getUserBooks(int $userId): View
+    {
+        $o_book = $this->getDoctrine()->getRepository(BiblioUser::class)->findBy(array('id_user' => $userId));
 
         if(empty($o_book)){
             return View::create("Il n'y a aucun livre à afficher.", Response::HTTP_NOT_FOUND);
