@@ -102,4 +102,20 @@ class ApiController extends Controller
         
     }
 
+
+    // --------- SHARING BOOKS API METHODS
+
+    /**
+     * Push a new book
+     * @Rest\View(statusCode=Response::HTTP_CREATED)
+     * @Rest\Post("/insert/book/{iISBN}")
+     */
+    public function setBook(int $iISBN): View
+    {
+        $o_book = $this->getDoctrine()->getRepository(Livre::class)->setIsbn(array('isbn' => $iISBN));
+        
+    }
+
+    // set book in BiblioUser
+
 }
