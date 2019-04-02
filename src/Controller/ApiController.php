@@ -106,13 +106,92 @@ class ApiController extends Controller
     // --------- SHARING BOOKS API METHODS
 
     /**
-     * Push a new book
-     * @Rest\View(statusCode=Response::HTTP_CREATED)
-     * @Rest\Post("/insert/book/{iISBN}")
+     * Creates an book resource
+     * @Rest\View(statusCode=201)
+     * @Rest\Post("/insert/book/{iIsbn}")
      */
-    public function setBook(int $iISBN)
+    public function setBook(int $iIsbn): View
     {
-        $o_book = $this->getDoctrine()->getRepository(Livre::class)->setIsbn(array('isbn' => $iISBN));
+        $oEm = $this->getDoctrine()->getManager();        
+        $sQuery = $oEm->createQuery('SELECT l FROM App\Entity\Livre l WHERE l.isbn = '.$iIsbn.'');
+        $aResult = $sQuery->getResult();
+        $oLivre = new Livre();
+        
+        if (empty($aResult)) {
+
+            $sSecret = "AIzaSyAhuwOyHCANRqaNa66WtUdyrfFtK2-7S9M";
+            $sUrl="https://www.googleapis.com/books/v1/volumes?q=isbn:" . $iIsbn . "&key=" . $sSecret . "";
+            
+            $fCurl = curl_init();
+            $aOpts = [
+                CURLOPT_URL => $sUrl,
+                CURLOPT_RETURNTRANSFER => true,
+            ];
+            curl_setopt_array($fCurl, $aOpts);
+            $response = curl_exec($fCurl);
+            curl_close($fCurl);
+            $res = json_decode($response);
+
+            if(isset($res->items)){
+
+                $oMain = $res->items[0]->volumeInfo;
+    
+                $title = $oMain->title;
+    
+                if(isset($oMain->authors)){
+                    
+                    foreach($oMain->authors as $i) {
+                        $author = $i;
+                    }
+    
+                } else {
+    
+                    $author = "Auteur Inconnu";
+    
+                }
+    
+                if(isset($oMain->description)){
+    
+                    $synopsis = $oMain->description;
+    
+                } else {
+    
+                    $synopsis = "Résumé indisponible";
+    
+                }
+    
+                $isbn = $iIsbn;
+    
+                if(isset($oMain->categories)){
+    
+                    foreach($oMain->categories as $i) {
+                        $genre = $i;
+                    }
+    
+                } else {
+    
+                    $genre = "Inconnu";
+    
+                }
+    
+                $oLivre
+                    ->setTitle($title)
+                    ->setAuthor($author)
+                    ->setSynopsis($synopsis)
+                    ->setIsbn($isbn)
+                    ->setStatus("0")
+                    ->setGenre($genre);
+                $oEm->persist($oLivre); 
+                $oEm->flush();
+
+                return true;
+            } else {
+
+                return false;
+            }
+        }
+
+        return true;
         
     }
 
