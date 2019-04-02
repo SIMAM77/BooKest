@@ -184,14 +184,14 @@ class ApiController extends Controller
                 $oEm->persist($oLivre); 
                 $oEm->flush();
 
-                return View::create("Le livre a correctement été ajouté.", Response::HTTP_CREATED);
+                return View::create("The book has been created.", Response::HTTP_CREATED);
             } else {
 
-                return false;
+                return View::create("Error, no book found.", Response::HTTP_NOT_FOUND);;
             }
         }
 
-        return View::create("Le livre est déjà existant.", Response::HTTP_CONFLICT);        
+        return View::create("The book already exists.", Response::HTTP_CONFLICT);        
     }
 
     // set book in BiblioUser
