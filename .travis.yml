@@ -2,4 +2,4 @@ language: php
 php:
   - "7.2.4"
 before_script: composer install
-script: phpunit tests/Util --coverage-text
+script: phpunit tests/LivreTest --coverage-text
