@@ -77,8 +77,8 @@ services:
         public: true
         
     admin.users:
-        class: App\Admin\UsersAdmin
-        arguments: [~, App\Entity\Users, ~]
+        class: App\Admin\UserAdmin
+        arguments: [~, App\Entity\User, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Tables, label: Users }
         public: true

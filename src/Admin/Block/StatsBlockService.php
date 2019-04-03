@@ -43,7 +43,7 @@ class StatsBlockService extends AbstractBlockService
 
         // Requêtes pour afficher les différentes statistiques
         $em = $this->em;
-        $s_query = $em->createQuery('SELECT COUNT(u.id) FROM App\Entity\Users u');
+        $s_query = $em->createQuery('SELECT COUNT(u.id) FROM App\Entity\User u');
         $s_count_user = $s_query->getSingleScalarResult();
         
         $s_query = $em->createQuery('SELECT COUNT(l.id) FROM App\Entity\Livre l');
