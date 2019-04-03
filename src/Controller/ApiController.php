@@ -76,8 +76,6 @@ class ApiController extends Controller
     {
         $o_book = $this->getDoctrine()->getRepository(Livre::class)->findById($bookId);
 
-        $s_error = "Il n'y a aucun livre à afficher";
-
         if(empty($o_book)){
             return View::create("Il n'y a aucun livre à afficher.", Response::HTTP_NOT_FOUND);
         } else {
