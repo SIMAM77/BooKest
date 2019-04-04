@@ -26,7 +26,6 @@ security:
             http_basic:
                 realm: "Mobile Authentication"
                 provider: fos_userbundle
-                csrf_token_generator: security.csrf.token_manager
             logout:     true
             anonymous : true
 
