@@ -18,3 +18,7 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin/
 
+mobile_authentication:
+    prefix: /api/login
+    controller: App\Controller\Security\TokenAuthenticator::getCredentials
+
