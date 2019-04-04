@@ -22,7 +22,6 @@ security:
         mobile:
             pattern: ^/api
             stateless:    true
-            wsse: true
             anonymous : true
             http_basic:
                 realm: "Mobile Authentication"
