@@ -9,6 +9,18 @@ book_list_page:
     path: /catalogue
     controller: App\Controller\Library\LibraryController::BookListPage
 
+<<<<<<< HEAD:config/routes.yaml
 biblio_rue:
     path: /map
     controller: App\Controller\Library\StreetLibraryController::Map
+=======
+admin_area:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin/
+
+>>>>>>> f1be818d012bed18162988ce02a5aa35cc460561:config/routes.yaml
