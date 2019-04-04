@@ -3,7 +3,7 @@ parameters:
     # This allows you to run cache:warmup even if your
     # environment variables are not available yet.
     # You should not need to change this value.
-    env(DATABASE_URL): ''
+    env(DATABASE_URL): '%env(DATABASE_URL)%'
 
 doctrine:
     dbal:
@@ -14,7 +14,7 @@ doctrine:
         default_table_options:
             charset: utf8mb4
             collate: utf8mb4_unicode_ci
-        url: mysql://rsts9umwvqhdzcfw:y7olkmbd9fzhttdn@vlvlnl1grfzh34vj.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/q3sg7n3jljjwkre4
+        url: mysql://root:@127.0.0.1:3306/bookest
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore
