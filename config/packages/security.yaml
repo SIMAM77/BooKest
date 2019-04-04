@@ -19,6 +19,14 @@ security:
                 csrf_token_generator: security.csrf.token_manager
             logout:       true
             anonymous:    true
+        mobile:
+            pattern: ^/api
+            stateless:    true
+            wsse: true
+            anonymous : true
+            http_basic:
+                realm: "Mobile Authentication"
+                provider: fos_userbundle
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
