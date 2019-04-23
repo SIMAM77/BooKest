@@ -1,0 +1,9 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: BooKest API Doc
+            description: Welcome to the BooKest API documentation. Here are list all the different methods you can call to the BooKest API.
+            version: Alpha
+    areas: # to filter documented areas
+        path_patterns:
+            - ^/api(?!doc|/doc.json$) # Accepts routes under /api except /api/doc
