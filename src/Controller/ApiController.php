@@ -33,7 +33,7 @@ class ApiController extends Controller
     }
 
     /**
-     * Retrieves a usr resource
+     * Retrieves a user resource
      * @Rest\Get("/user/{userId}")
      */
     public function getUserById(int $userId): View
@@ -100,11 +100,8 @@ class ApiController extends Controller
         
     }
 
-
-    // --------- SHARING BOOKS API METHODS
-
     /**
-     * Creates an book resource
+     * Creates a book resource
      * @Rest\View(statusCode=201)
      * @Rest\Post("/insert/book/{iIsbn}")
      */
@@ -193,5 +190,8 @@ class ApiController extends Controller
     }
 
     // set book in BiblioUser
+
+
+    // --------- SHARING BOOKS API METHODS
 
 }
