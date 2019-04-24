@@ -1,0 +1,29 @@
+class EpisodesServices {
+    companion Object {
+        fun getEpisodes(){
+            1- Récupérer l'url
+            val url:String = UrlBuilder.episodeUrl
+            
+            2-appeler l'url (avec un client HTTP)
+            3-réceptionner les données (format JSON)
+            4- Parsing JSON (avec les librairies ex:Jackson)
+
+            val request:BaseRequest.Builder<ResultEpisode!>
+                =BaseRequest.Builder<ResultEpisode>(Request.Method.GET, url, ResultEpisode::class.java).Listener(object: RequestListener<ResultEpisode>{
+                    override fun OnSuccess (
+                        request: Request<ResultEpisode>,
+                        response : NetworkResponse,
+                        result: ResultEpisode?
+                    ) {
+                        val episodes:List<Episode> = result.results
+                    }
+                    override fun onFailure(
+                        request: Request<ResultEpisode>,
+                        response : NetworkResponse,
+                        result: VolleyError?
+                    )
+                })
+        }
+
+    }
+}
