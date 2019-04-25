@@ -1,0 +1,4 @@
+setName
+setAdress
+setGeolocalization
+setComments

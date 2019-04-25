@@ -18,6 +18,18 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin/
 
+app.swagger_ui:
+    path: /docapi
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
 api_login_check:
     path: /api/login_check
+    methods:  [POST]
+
+api_register:
+    path: /api/register
+    controller: App\Controller\Authentication\AuthController::Register
+    methods:  [POST]
+
 
