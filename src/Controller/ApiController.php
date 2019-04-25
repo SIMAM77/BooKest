@@ -1,18 +1,26 @@
 <?php
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Security;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
-use App\Entity\Users;
+use App\Entity\User;
 use App\Entity\Livre;
 use App\Entity\BiblioUser;
 
 class ApiController extends Controller
 {
+    private $security;
+
+    public function __construct(Security $o_security)
+    {
+        $this->security = $o_security;
+    }
 
     // USER API CONTROLLER ----------------------------------------------------------------------------
 
@@ -22,10 +30,26 @@ class ApiController extends Controller
      */
     public function getUsers(): View
     {
-        $o_user = $this->getDoctrine()->getRepository(Users::class)->findAll();
+        $o_user = $this->getDoctrine()->getRepository(User::class)->findAll();
 
         if(empty($o_user)){
-            return View::create("Il n'y a aucun utilisateur à afficher.", Response::HTTP_NOT_FOUND);
+            return View::create("No user found.", Response::HTTP_NOT_FOUND);
+        } else {
+            return View::create($o_user, Response::HTTP_OK);
+        }
+        
+    }
+
+    /**
+     * Retrieves a user resource
+     * @Rest\Get("/apiuser")
+     */
+    public function getApiUser(Security $o_security): View
+    {
+        $o_user = $this->security->getUser();
+        
+        if(empty($o_user)){
+            return View::create("No user found.", Response::HTTP_NOT_FOUND);
         } else {
             return View::create($o_user, Response::HTTP_OK);
         }
@@ -38,12 +62,10 @@ class ApiController extends Controller
      */
     public function getUserById(int $userId): View
     {
-        $o_user = $this->getDoctrine()->getRepository(Users::class)->findById($userId);
-
-        $s_error = "Il n'y a aucun utilisateur à afficher";
+        $o_user = $this->getDoctrine()->getRepository(User::class)->findById($userId);
 
         if(empty($o_user)){
-            return View::create("Il n'y a aucun utilisateur à afficher.", Response::HTTP_NOT_FOUND);
+            return View::create("No user found.", Response::HTTP_NOT_FOUND);
         } else {
             return View::create($o_user, Response::HTTP_OK);
         }
@@ -61,7 +83,7 @@ class ApiController extends Controller
         $o_book = $this->getDoctrine()->getRepository(Livre::class)->findAll();
 
         if(empty($o_book)){
-            return View::create("Il n'y a aucun livre à afficher.", Response::HTTP_NOT_FOUND);
+            return View::create("No book found.", Response::HTTP_NOT_FOUND);
         } else {
             return View::create($o_book, Response::HTTP_OK);
         }
@@ -77,7 +99,7 @@ class ApiController extends Controller
         $o_book = $this->getDoctrine()->getRepository(Livre::class)->findById($bookId);
 
         if(empty($o_book)){
-            return View::create("Il n'y a aucun livre à afficher.", Response::HTTP_NOT_FOUND);
+            return View::create("No book found.", Response::HTTP_NOT_FOUND);
         } else {
             return View::create($o_book, Response::HTTP_OK);
         }
@@ -93,7 +115,7 @@ class ApiController extends Controller
         $o_book = $this->getDoctrine()->getRepository(BiblioUser::class)->findBy(array('id_user' => $userId));
 
         if(empty($o_book)){
-            return View::create("Il n'y a aucun livre à afficher.", Response::HTTP_NOT_FOUND);
+            return View::create("No book found.", Response::HTTP_NOT_FOUND);
         } else {
             return View::create($o_book, Response::HTTP_OK);
         }

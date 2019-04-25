@@ -22,11 +22,14 @@ app.swagger_ui:
     path: /apidoc
     methods: GET
     defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
 api_login_check:
     path: /api/login_check
-    
-app.swagger_ui:
-    path: /apidoc
-    methods: GET
-    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+    methods:  [POST]
+
+api_register:
+    path: /api/register
+    controller: App\Controller\Authentication\AuthController::Register
+    methods:  [POST]
+
 
