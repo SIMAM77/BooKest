@@ -25,7 +25,7 @@ class ApiController extends Controller
     // USER API CONTROLLER ----------------------------------------------------------------------------
 
     /**
-     * Retrieves a user resource
+     * Get the list of all the users
      * @Rest\Get("/users")
      */
     public function getUsers(): View
@@ -41,7 +41,7 @@ class ApiController extends Controller
     }
 
     /**
-     * Retrieves a user resource
+     * Get the user actually logged
      * @Rest\Get("/apiuser")
      */
     public function getApiUser(Security $o_security): View
@@ -57,7 +57,7 @@ class ApiController extends Controller
     }
 
     /**
-     * Retrieves a user resource
+     * Get a user by its id
      * @Rest\Get("/user/{userId}")
      */
     public function getUserById(int $userId): View
@@ -75,7 +75,7 @@ class ApiController extends Controller
     // BOOK API CONTROLLER ----------------------------------------------------------------------------
 
     /**
-     * Retrieves all books
+     * Get a list of all books
      * @Rest\Get("/books")
      */
     public function getBooks(): View
@@ -91,10 +91,10 @@ class ApiController extends Controller
     }
 
     /**
-     * Retrieves a book resource
+     * Get a book by its id
      * @Rest\Get("/book/{bookId}")
      */
-    public function getBook(int $bookId): View
+    public function getBookById(int $bookId): View
     {
         $o_book = $this->getDoctrine()->getRepository(Livre::class)->findById($bookId);
 
@@ -107,7 +107,7 @@ class ApiController extends Controller
     }
 
     /**
-     * Retrieves all user books resource
+     * Get a list of all the user's books
      * @Rest\Get("/user/{userId}/books")
      */
     public function getUserBooks(int $userId): View
@@ -123,7 +123,7 @@ class ApiController extends Controller
     }
 
     /**
-     * Creates a book resource
+     * Insert a book by ISBN Code
      * @Rest\View(statusCode=201)
      * @Rest\Post("/insert/book/{iIsbn}")
      */
