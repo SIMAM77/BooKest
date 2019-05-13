@@ -10,39 +10,27 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-final class LivreAdmin extends AbstractAdmin
+final class UserRateAdmin extends AbstractAdmin
 {
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
-			->add('id')
-			->add('title')
-			->add('author')
-			->add('synopsis')
-			->add('isbn')
-			->add('score')
-			->add('comments')
-			->add('historique_emprunt')
-			->add('status')
-			->add('genre')
-			;
+            ->add('receiverId')
+            ->add('senderId')
+            ->add('rate')
+            ->add('createdAt')
+            ;
     }
 
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
-			->add('id')
-			->add('title')
-			->add('author')
-			->add('synopsis')
-			->add('isbn')
-			->add('score')
-			->add('comments')
-			->add('historique_emprunt')
-			->add('status')
-			->add('genre')
-			->add('_action', null, [
+            ->add('receiverId')
+            ->add('senderId')
+            ->add('rate')
+            ->add('createdAt')
+            ->add('_action', null, [
                 'actions' => [
                     'show' => [],
                     'edit' => [],
@@ -54,31 +42,20 @@ final class LivreAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-			->add('title')
-			->add('author')
-			->add('synopsis')
-			->add('isbn')
-			->add('score')
-			->add('comments')
-			->add('historique_emprunt')
-			->add('status')
-			->add('genre')
-			;
+            ->add('receiverId')
+            ->add('senderId')
+            ->add('rate')
+            ->add('createdAt')
+            ;
     }
 
     protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
-			->add('id')
-			->add('title')
-			->add('author')
-			->add('synopsis')
-			->add('isbn')
-			->add('score')
-			->add('comments')
-			->add('historique_emprunt')
-			->add('status')
-			->add('genre')
-			;
+            ->add('receiverId')
+            ->add('senderId')
+            ->add('rate')
+            ->add('createdAt')
+            ;
     }
 }

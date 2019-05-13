@@ -14,10 +14,10 @@
             </thead>
                 <tr>
                 {% for relation in relations %}
-                    <td class="text-center">User {{ relation.rep_id_preteur }}</td>
-                    <td class="text-center">Livre {{ relation.rep_id_livre }}</td>
-                    <td class="text-center">User {{ relation.rep_id_emprunteur }}</td>                    
-                    <td class="text-center">{{ relation.rep_date_start | date('d-m-Y h:i:s') }}</td>
+                    <td class="text-center">User {{ share.lender_id }}</td>
+                    <td class="text-center">Livre {{ share.book_id }}</td>
+                    <td class="text-center">User {{ share.borrower_id }}</td>
+                    <td class="text-center">{{ share.start_date | date('d-m-Y h:i:s') }}</td>
                 {% endfor %}
                     <td class="text-center"><a href="#" class="fa fa-eye"></td>
                 </tr>

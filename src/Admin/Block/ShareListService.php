@@ -43,7 +43,7 @@ class ShareListService extends AbstractBlockService
 
         // Requêtes pour afficher les différentes statistiques
         $em = $this->em;
-        $s_query = $em->createQuery('SELECT rep FROM App\Entity\RelationEmprunteurPreteur rep');
+        $s_query = $em->createQuery('SELECT s FROM App\Entity\Share s');
         $a_relation = $s_query->getScalarResult();
  
         return $this->renderResponse('Block/share_list.html.twig', array(

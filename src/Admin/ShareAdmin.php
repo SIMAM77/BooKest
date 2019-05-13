@@ -10,15 +10,20 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-final class NotificationAdmin extends AbstractAdmin
+final class ShareAdmin extends AbstractAdmin
 {
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('id')
-            ->add('title')
-            ->add('content')
+            ->add('borrowerId')
+            ->add('lenderId')
+            ->add('bookId')
+            ->add('startDate')
+            ->add('endDate')
+            ->add('createdAt')
+            ->add('updatedAt')
             ;
     }
 
@@ -26,8 +31,13 @@ final class NotificationAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('id')
-            ->add('title')
-            ->add('content')
+            ->add('borrowerId')
+            ->add('lenderId')
+            ->add('bookId')
+            ->add('startDate')
+            ->add('endDate')
+            ->add('createdAt')
+            ->add('updatedAt')
             ->add('_action', null, [
                 'actions' => [
                     'show' => [],
@@ -41,8 +51,13 @@ final class NotificationAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('id')
-            ->add('title')
-            ->add('content')
+            ->add('borrowerId')
+            ->add('lenderId')
+            ->add('bookId')
+            ->add('startDate')
+            ->add('endDate')
+            ->add('createdAt')
+            ->add('updatedAt')
             ;
     }
 
@@ -50,8 +65,13 @@ final class NotificationAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('id')
-            ->add('title')
-            ->add('content')
+            ->add('borrowerId')
+            ->add('lenderId')
+            ->add('bookId')
+            ->add('startDate')
+            ->add('endDate')
+            ->add('createdAt')
+            ->add('updatedAt')
             ;
     }
 }
