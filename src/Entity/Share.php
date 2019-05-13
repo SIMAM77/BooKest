@@ -70,5 +70,94 @@ class Share
      */
     private $updatedAt;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getBorrowerId(): ?int
+    {
+        return $this->borrowerId;
+    }
+
+    public function setBorrowerId(int $borrowerId): self
+    {
+        $this->borrowerId = $borrowerId;
+
+        return $this;
+    }
+
+    public function getLenderId(): ?int
+    {
+        return $this->lenderId;
+    }
+
+    public function setLenderId(int $lenderId): self
+    {
+        $this->lenderId = $lenderId;
+
+        return $this;
+    }
+
+    public function getBookId(): ?int
+    {
+        return $this->bookId;
+    }
+
+    public function setBookId(int $bookId): self
+    {
+        $this->bookId = $bookId;
+
+        return $this;
+    }
+
+    public function getStartDate(): ?\DateTimeInterface
+    {
+        return $this->startDate;
+    }
+
+    public function setStartDate(\DateTimeInterface $startDate): self
+    {
+        $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    public function getEndDate(): ?\DateTimeInterface
+    {
+        return $this->endDate;
+    }
+
+    public function setEndDate(\DateTimeInterface $endDate): self
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
 
 }

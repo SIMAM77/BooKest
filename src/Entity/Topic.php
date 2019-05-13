@@ -49,5 +49,58 @@ class Topic
      */
     private $date;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getReceiverId(): ?int
+    {
+        return $this->receiverId;
+    }
+
+    public function setReceiverId(int $receiverId): self
+    {
+        $this->receiverId = $receiverId;
+
+        return $this;
+    }
+
+    public function getSenderId(): ?int
+    {
+        return $this->senderId;
+    }
+
+    public function setSenderId(int $senderId): self
+    {
+        $this->senderId = $senderId;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(?\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
 
 }

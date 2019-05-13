@@ -42,5 +42,46 @@ class UserRate
      */
     private $createdAt;
 
+    public function getReceiverId(): ?int
+    {
+        return $this->receiverId;
+    }
+
+    public function getSenderId(): ?int
+    {
+        return $this->senderId;
+    }
+
+    public function setSenderId(int $senderId): self
+    {
+        $this->senderId = $senderId;
+
+        return $this;
+    }
+
+    public function getRate(): ?int
+    {
+        return $this->rate;
+    }
+
+    public function setRate(int $rate): self
+    {
+        $this->rate = $rate;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
 
 }

@@ -49,5 +49,58 @@ class UserLibrary
      */
     private $updatedAt;
 
+    public function getUserId(): ?int
+    {
+        return $this->userId;
+    }
+
+    public function getBookId(): ?int
+    {
+        return $this->bookId;
+    }
+
+    public function setBookId(int $bookId): self
+    {
+        $this->bookId = $bookId;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?int $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
 
 }

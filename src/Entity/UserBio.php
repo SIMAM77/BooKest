@@ -35,5 +35,34 @@ class UserBio
      */
     private $biography;
 
+    public function getUserId(): ?int
+    {
+        return $this->userId;
+    }
+
+    public function getAvatarId(): ?int
+    {
+        return $this->avatarId;
+    }
+
+    public function setAvatarId(int $avatarId): self
+    {
+        $this->avatarId = $avatarId;
+
+        return $this;
+    }
+
+    public function getBiography(): ?string
+    {
+        return $this->biography;
+    }
+
+    public function setBiography(?string $biography): self
+    {
+        $this->biography = $biography;
+
+        return $this;
+    }
+
 
 }
