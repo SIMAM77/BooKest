@@ -10,8 +10,8 @@ use Symfony\Component\Security\Core\Security;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
 use App\Entity\User;
-use App\Entity\Livre;
-use App\Entity\BiblioUser;
+use App\Entity\Book;
+use App\Entity\UserLibrary;
 
 class ApiController extends Controller
 {
@@ -80,7 +80,7 @@ class ApiController extends Controller
      */
     public function getBooks(): View
     {
-        $o_book = $this->getDoctrine()->getRepository(Livre::class)->findAll();
+        $o_book = $this->getDoctrine()->getRepository(Book::class)->findAll();
 
         if(empty($o_book)){
             return View::create("No book found.", Response::HTTP_NOT_FOUND);
@@ -96,7 +96,7 @@ class ApiController extends Controller
      */
     public function getBookById(int $bookId): View
     {
-        $o_book = $this->getDoctrine()->getRepository(Livre::class)->findById($bookId);
+        $o_book = $this->getDoctrine()->getRepository(Book::class)->findById($bookId);
 
         if(empty($o_book)){
             return View::create("No book found.", Response::HTTP_NOT_FOUND);
@@ -112,7 +112,7 @@ class ApiController extends Controller
      */
     public function getUserBooks(int $userId): View
     {
-        $o_book = $this->getDoctrine()->getRepository(BiblioUser::class)->findBy(array('id_user' => $userId));
+        $o_book = $this->getDoctrine()->getRepository(UserLibrary::class)->findBy(array('userId' => $userId));
 
         if(empty($o_book)){
             return View::create("No book found.", Response::HTTP_NOT_FOUND);
@@ -130,9 +130,9 @@ class ApiController extends Controller
     public function setBook(int $iIsbn): View
     {
         $oEm = $this->getDoctrine()->getManager();        
-        $sQuery = $oEm->createQuery('SELECT l FROM App\Entity\Livre l WHERE l.isbn = '.$iIsbn.'');
+        $sQuery = $oEm->createQuery('SELECT b FROM App\Entity\Book b WHERE b.isbn = '.$iIsbn.'');
         $aResult = $sQuery->getResult();
-        $oLivre = new Livre();
+        $oBook = new Book();
         
         if (empty($aResult)) {
 
@@ -160,21 +160,17 @@ class ApiController extends Controller
                     foreach($oMain->authors as $i) {
                         $author = $i;
                     }
-    
                 } else {
     
                     $author = "Auteur Inconnu";
-    
                 }
     
                 if(isset($oMain->description)){
     
                     $synopsis = $oMain->description;
-    
                 } else {
     
                     $synopsis = "Résumé indisponible";
-    
                 }
     
                 $isbn = $iIsbn;
@@ -188,30 +184,27 @@ class ApiController extends Controller
                 } else {
     
                     $genre = "Inconnu";
-    
                 }
     
-                $oLivre
+                $oBook
                     ->setTitle($title)
                     ->setAuthor($author)
                     ->setSynopsis($synopsis)
-                    ->setIsbn($isbn)
-                    ->setStatus("0")
-                    ->setGenre($genre);
-                $oEm->persist($oLivre); 
+                    ->setIsbn($isbn);
+                $oEm->persist($oBook);
                 $oEm->flush();
 
                 return View::create("The book has been created.", Response::HTTP_CREATED);
             } else {
 
-                return View::create("Error, no book found.", Response::HTTP_NOT_FOUND);;
+                return View::create("Error, no book found.", Response::HTTP_NOT_FOUND);
             }
         }
 
         return View::create("The book already exists.", Response::HTTP_CONFLICT);        
     }
 
-    // set book in BiblioUser
+    // set book in UserLibrary
 
 
     // --------- SHARING BOOKS API METHODS

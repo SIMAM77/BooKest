@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\HttpFoundation\Request;
-use App\Entity\Livre;
+use App\Entity\Book;
 use App\Form\LivreNotationForm;
 
 class NotationController extends Controller
@@ -35,7 +35,7 @@ class NotationController extends Controller
 
     $notation_new = new Notation();
 
-    $elements = $this->getDoctrine()->getRepository(Livre::class);
+    $elements = $this->getDoctrine()->getRepository(Book::class);
     $book = $elements->find($id);
 
     $book_notation = $book->getNotation();
