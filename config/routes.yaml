@@ -9,6 +9,10 @@ book_list_page:
     path: /catalogue
     controller: App\Controller\Library\LibraryController::BookListPage
 
+# street_library_page:
+#     path: /map
+#     controller: App\Controller\Library\StreetLibraryController::Map
+
 admin_area:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin
