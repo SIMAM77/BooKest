@@ -24,13 +24,6 @@ class Notification
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=45, nullable=false)
-     */
-    private $title;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="content", type="string", length=255, nullable=false)
      */
     private $content;
@@ -38,18 +31,6 @@ class Notification
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
     }
 
     public function getContent(): ?string
@@ -63,6 +44,4 @@ class Notification
 
         return $this;
     }
-
-
 }

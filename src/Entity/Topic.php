@@ -38,9 +38,16 @@ class Topic
     /**
      * @var string
      *
-     * @ORM\Column(name="content", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="notification_id", type="text", length=65535, nullable=false)
      */
-    private $content;
+    protected $notification;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="book_id", type="text", length=65535, nullable=false)
+     */
+    protected $book;
 
     /**
      * @var \DateTime|null

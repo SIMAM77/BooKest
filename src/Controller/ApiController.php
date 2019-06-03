@@ -112,7 +112,7 @@ class ApiController extends Controller
      */
     public function getUserBooks(int $userId): View
     {
-        $o_book = $this->getDoctrine()->getRepository(UserLibrary::class)->findBy(array('userId' => $userId));
+        $o_book = $this->getDoctrine()->getRepository(User::class)->findOneBy(array('id' => $userId))->getBooks();
 
         if(empty($o_book)){
             return View::create("No book found.", Response::HTTP_NOT_FOUND);
@@ -206,7 +206,85 @@ class ApiController extends Controller
 
     // set book in UserLibrary
 
+    /**
+     * Set a book into a user library
+     * @Rest\View(statusCode=201)
+     * @Rest\Post("/setbook/{bookId}")
+     */
+    public function setUserBook(Security $o_security, int $bookId): View
+    {
+
+        $oEm = $this->getDoctrine()->getManager();
+        $o_user = $this->security->getUser();
+        $o_book = $this->getDoctrine()->getRepository(Book::class)->findOneBy(array('id' => $bookId));
+
+        if(empty($o_user)){
+
+            return View::create("User not logged in.", Response::HTTP_NOT_FOUND);
+        } else {
+
+            $o_library = new UserLibrary();
+            $o_library->setUser($o_user);
+            $o_library->addBook($o_book);
+            $o_library->setStatus(1);
+            dump($o_library);
+
+            $oEm->persist($o_library);
+            $oEm->flush();
+            return View::create($o_user, Response::HTTP_OK);
+        }
+        var_dump($o_book);
+    }
+
+    /**
+     * Remove a book from a user library
+     * @Rest\View(statusCode=201)
+     * @Rest\Delete("/removebook/{bookId}")
+     */
+    public function removeUserBook(Security $o_security, int $bookId): View
+    {
+
+        $oEm = $this->getDoctrine()->getManager();
+        $o_user = $this->security->getUser();
+        $o_book = $this->getDoctrine()->getRepository(Book::class)->findOneBy(array('id' => $bookId));
+
+        if(empty($o_user)){
+
+            return View::create("User not logged in.", Response::HTTP_NOT_FOUND);
+        } else {
+
+            $o_user->removeBook($o_book);
+
+            $oEm->persist($o_user);
+            $oEm->flush();
+
+            return View::create($o_user, Response::HTTP_OK);
+        }
+        var_dump($o_book);
+    }
 
     // --------- SHARING BOOKS API METHODS
 
+    /**
+     * Start a share. !!! WARNING !!! The share must start by the borrower
+     * @Rest\View(statusCode=201)
+     * @Rest\Post("/share/start/{bookId}/{lenderId}")
+     */
+    public function startSharing(Security $o_security, int $book_id = null, int $lender_id = null)
+    {
+
+        $oEm = $this->getDoctrine()->getManager();
+        $o_borrower = $this->security->getUser();
+        $o_book = $this->getDoctrine()->getRepository(Book::class)->findOneBy(array('id' => $book_id));
+        $o_lender = $this->getDoctrine()->getRepository(User::class)->findOneBy(array('id' => $lender_id));
+
+        if(empty($o_borrower)){
+
+            return View::create("User not logged in.", Response::HTTP_NOT_FOUND);
+        } else {
+
+            $o_books = $o_borrower->getLibrary();
+            return View::create($o_books, Response::HTTP_OK);
+        }
+    }
 }

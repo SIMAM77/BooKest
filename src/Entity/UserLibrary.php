@@ -2,66 +2,66 @@
 
 namespace App\Entity;
 
+use App\Entity\Book;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * UserLibrary
  *
- * @ORM\Table(name="user_library")
+ * @ORM\Table(name="user_library_relation")
  * @ORM\Entity
  */
 class UserLibrary
 {
+
     /**
      * @var int
      *
-     * @ORM\Column(name="user_id", type="integer", nullable=false)
      * @ORM\Id
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $userId;
+    protected $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="book_id", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="UserLibrary")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
-    private $bookId;
+    protected $user;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="status", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Book", inversedBy="UserLibrary")
+     * @ORM\JoinColumn(name="book_id", referencedColumnName="id", nullable=false)
      */
-    private $status;
+    protected $library;
 
     /**
-     * @var \DateTime|null
+     * @var string|null
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     * @ORM\Column(name="status", type="string", nullable=true)
      */
-    private $createdAt;
+    protected $status;
 
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
-     */
-    private $updatedAt;
-
-    public function getUserId(): ?int
+    public function __construct()
     {
-        return $this->userId;
+        $this->library = new \Doctrine\Common\Collections\ArrayCollection();
+        // your own logic
     }
 
-    public function getBookId(): ?int
+    public function getId(): ?int
     {
-        return $this->bookId;
+        return $this->id;
     }
 
-    public function setBookId(int $bookId): self
+    public function getUser()
     {
-        $this->bookId = $bookId;
+        return $this->user;
+    }
+
+    public function setUser($user)
+    {
+        $this->user = $user;
 
         return $this;
     }
@@ -78,29 +78,36 @@ class UserLibrary
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    /**
+     * Get books
+     *
+     * @return UserLibrary
+     */
+    public function getLibrary()
     {
-        return $this->createdAt;
+        return $this->library;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    /**
+     * Add book
+     *
+     * @param \App\Entity\Book $oBook
+     * @return Book
+     */
+    public function addBook(\App\Entity\Book $oBook)
     {
-        $this->createdAt = $createdAt;
+        $this->library[] = $oBook;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    /**
+     * Remove book
+     *
+     * @param \App\Entity\Book $oBook
+     */
+    public function removeBook(\App\Entity\Book $oBook)
     {
-        return $this->updatedAt;
+        $this->library->removeElement($oBook);
     }
-
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-
 }

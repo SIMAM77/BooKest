@@ -57,6 +57,11 @@ class Book
     private $isbn;
 
     /**
+     * @ORM\OneToMany(targetEntity="UserLibrary", mappedBy="book")
+     */
+    protected $library;
+
+    /**
      * @var \DateTime|null
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
