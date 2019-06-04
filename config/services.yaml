@@ -27,88 +27,60 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    admin.biography:
+        class: App\Admin\BiographyAdmin
+        arguments: [~, App\Entity\Biography, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Users, label: Biography, icon: '<i class="fa fa-users"></i>' }
+        public: true
+
     admin.book:
         class: App\Admin\BookAdmin
         arguments: [~, App\Entity\Book, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Books, icon: '<i class="fa fa-book"></i>', label: Book core }
+            - { name: sonata.admin, manager_type: orm, group: Books, label: Book core, icon: '<i class="fa fa-book"></i>' }
         public: true
 
-    admin.book_category:
-        class: App\Admin\BookCategoryAdmin
-        arguments: [~, App\Entity\BookCategory, ~]
+    admin.category:
+        class: App\Admin\CategoryAdmin
+        arguments: [~, App\Entity\Category, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Books, label: Book categories }
+            - { name: sonata.admin, manager_type: orm, group: Books, label: Categories, icon: '<i class="fa fa-book"></i>' }
         public: true
 
-    admin.book_comment:
-        class: App\Admin\BookCommentAdmin
-        arguments: [~, App\Entity\BookComment, ~]
+    admin.comment:
+        class: App\Admin\CommentAdmin
+        arguments: [~, App\Entity\Comment, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Books, label: Book comments }
+            - { name: sonata.admin, manager_type: orm, group: Users, label: Comments, icon: '<i class="fa fa-users"></i>' }
         public: true
 
-    admin.book_rate:
-        class: App\Admin\BookRateAdmin
-        arguments: [~, App\Entity\BookRate, ~]
+    admin.library:
+        class: App\Admin\LibraryAdmin
+        arguments: [~, App\Entity\Library, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Books, label: Book rates }
+            - { name: sonata.admin, manager_type: orm, group: Users, label: Libraries, icon: '<i class="fa fa-users"></i>' }
         public: true
 
-    admin.notification:
-        class: App\Admin\NotificationAdmin
-        arguments: [~, App\Entity\Notification, ~]
+    admin.rate:
+        class: App\Admin\RateAdmin
+        arguments: [~, App\Entity\Rate, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Notifications, on_top: true, icon: '<i class="fa fa-bell"></i>', label: Notifications }
+            - { name: sonata.admin, manager_type: orm, group: Users, label: Rates, icon: '<i class="fa fa-users"></i>' }
         public: true
 
     admin.share:
         class: App\Admin\ShareAdmin
         arguments: [~, App\Entity\Share, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Shares, on_top: true, icon: '<i class="fa fa-share-alt-square"></i>', label: Shares }
-        public: true
-
-    admin.topic:
-        class: App\Admin\TopicAdmin
-        arguments: [~, App\Entity\Topic, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Topics, on_top: true, icon: '<i class="fa fa-file"></i>', label: Topics }
+            - { name: sonata.admin, manager_type: orm, group: Shares, on_top: true, label: Shares, icon: '<i class="fa fa-share-alt"></i>' }
         public: true
 
     admin.user:
         class: App\Admin\UserAdmin
         arguments: [~, App\Entity\User, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, icon: '<i class="fa fa-users"></i>', group: Users, label: User core }
-        public: true
-
-    admin.user_bio:
-        class: App\Admin\UserBioAdmin
-        arguments: [~, App\Entity\UserBio, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Users, label: User biography }
-        public: true
-
-    admin.user_comment:
-        class: App\Admin\UserCommentAdmin
-        arguments: [~, App\Entity\UserComment, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Users, label: User comments }
-        public: true
-
-    admin.user_library:
-        class: App\Admin\UserLibraryAdmin
-        arguments: [~, App\Entity\UserLibrary, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Users, label: User library }
-        public: true
-
-    admin.user_rate:
-        class: App\Admin\UserRateAdmin
-        arguments: [~, App\Entity\UserRate, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Users, label: User rates }
+            - { name: sonata.admin, manager_type: orm, group: Users, label: User core, icon: '<i class="fa fa-users"></i>' }
         public: true
 
     sonata.block.service.stats:

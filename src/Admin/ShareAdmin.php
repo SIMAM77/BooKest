@@ -17,13 +17,11 @@ final class ShareAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
-            ->add('borrowerId')
-            ->add('lenderId')
-            ->add('bookId')
-            ->add('startDate')
-            ->add('endDate')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('start_date')
+            ->add('end_date')
+            ->add('created_at')
+            ->add('updated_at')
+            ->add('status')
             ;
     }
 
@@ -31,13 +29,11 @@ final class ShareAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('id')
-            ->add('borrowerId')
-            ->add('lenderId')
-            ->add('bookId')
-            ->add('startDate')
-            ->add('endDate')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('start_date')
+            ->add('end_date')
+            ->add('created_at')
+            ->add('updated_at')
+            ->add('status')
             ->add('_action', null, [
                 'actions' => [
                     'show' => [],
@@ -51,13 +47,11 @@ final class ShareAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('id')
-            ->add('borrowerId')
-            ->add('lenderId')
-            ->add('bookId')
-            ->add('startDate')
-            ->add('endDate')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('start_date')
+            ->add('end_date')
+            ->add('created_at')
+            ->add('updated_at')
+            ->add('status')
             ;
     }
 
@@ -65,13 +59,11 @@ final class ShareAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('id')
-            ->add('borrowerId')
-            ->add('lenderId')
-            ->add('bookId')
-            ->add('startDate')
-            ->add('endDate')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('start_date')
+            ->add('end_date')
+            ->add('created_at')
+            ->add('updated_at')
+            ->add('status')
             ;
     }
 }

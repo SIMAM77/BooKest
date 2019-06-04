@@ -10,24 +10,22 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-final class UserBioAdmin extends AbstractAdmin
+final class CommentAdmin extends AbstractAdmin
 {
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
-            ->add('userId')
-            ->add('avatarId')
-            ->add('biography')
+            ->add('id')
+            ->add('created_at')
             ;
     }
 
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
-            ->add('userId')
-            ->add('avatarId')
-            ->add('biography')
+            ->add('id')
+            ->add('created_at')
             ->add('_action', null, [
                 'actions' => [
                     'show' => [],
@@ -40,18 +38,16 @@ final class UserBioAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-            ->add('userId')
-            ->add('avatarId')
-            ->add('biography')
+            ->add('id')
+            ->add('created_at')
             ;
     }
 
     protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
-            ->add('userId')
-            ->add('avatarId')
-            ->add('biography')
+            ->add('id')
+            ->add('created_at')
             ;
     }
 }

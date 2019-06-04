@@ -22,8 +22,8 @@ final class BookAdmin extends AbstractAdmin
             ->add('synopsis')
             ->add('category')
             ->add('isbn')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('created_at')
+            ->add('updated_at')
             ;
     }
 
@@ -36,8 +36,8 @@ final class BookAdmin extends AbstractAdmin
             ->add('synopsis')
             ->add('category')
             ->add('isbn')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('created_at')
+            ->add('updated_at')
             ->add('_action', null, [
                 'actions' => [
                     'show' => [],
@@ -56,8 +56,8 @@ final class BookAdmin extends AbstractAdmin
             ->add('synopsis')
             ->add('category')
             ->add('isbn')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('created_at')
+            ->add('updated_at')
             ;
     }
 
@@ -70,8 +70,8 @@ final class BookAdmin extends AbstractAdmin
             ->add('synopsis')
             ->add('category')
             ->add('isbn')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('created_at')
+            ->add('updated_at')
             ;
     }
 }
