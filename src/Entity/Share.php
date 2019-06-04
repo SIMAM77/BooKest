@@ -5,159 +5,157 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Share
- *
- * @ORM\Table(name="share")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ShareRepository")
  */
 class Share
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="borrower_id", type="integer", nullable=false)
+     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $borrowerId;
+    private $borrower;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="lender_id", type="integer", nullable=false)
+     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist", "remove"})
      */
-    private $lenderId;
+    private $lender;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="book_id", type="integer", nullable=false)
+     * @ORM\OneToOne(targetEntity="App\Entity\Library", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $bookId;
+    private $book;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="start_date", type="datetime", nullable=false)
+     * @ORM\Column(type="datetime")
      */
-    private $startDate;
+    private $start_date;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="end_date", type="datetime", nullable=false)
+     * @ORM\Column(type="datetime")
      */
-    private $endDate;
+    private $end_date;
 
     /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private $created_at;
 
     /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
-    private $updatedAt;
+    private $updated_at;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $status;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getBorrowerId(): ?int
+    public function getBorrower(): ?User
     {
-        return $this->borrowerId;
+        return $this->borrower;
     }
 
-    public function setBorrowerId(int $borrowerId): self
+    public function setBorrower(User $borrower): self
     {
-        $this->borrowerId = $borrowerId;
+        $this->borrower = $borrower;
 
         return $this;
     }
 
-    public function getLenderId(): ?int
+    public function getLender(): ?User
     {
-        return $this->lenderId;
+        return $this->lender;
     }
 
-    public function setLenderId(int $lenderId): self
+    public function setLender(?User $lender): self
     {
-        $this->lenderId = $lenderId;
+        $this->lender = $lender;
 
         return $this;
     }
 
-    public function getBookId(): ?int
+    public function getBook(): ?Library
     {
-        return $this->bookId;
+        return $this->book;
     }
 
-    public function setBookId(int $bookId): self
+    public function setBook(Library $book): self
     {
-        $this->bookId = $bookId;
+        $this->book = $book;
 
         return $this;
     }
 
     public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->startDate;
+        return $this->start_date;
     }
 
-    public function setStartDate(\DateTimeInterface $startDate): self
+    public function setStartDate(\DateTimeInterface $start_date): self
     {
-        $this->startDate = $startDate;
+        $this->start_date = $start_date;
 
         return $this;
     }
 
     public function getEndDate(): ?\DateTimeInterface
     {
-        return $this->endDate;
+        return $this->end_date;
     }
 
-    public function setEndDate(\DateTimeInterface $endDate): self
+    public function setEndDate(\DateTimeInterface $end_date): self
     {
-        $this->endDate = $endDate;
+        $this->end_date = $end_date;
 
         return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeInterface $created_at): self
     {
-        $this->createdAt = $createdAt;
+        $this->created_at = $created_at;
 
         return $this;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updatedAt;
+        return $this->updated_at;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updated_at = $updated_at;
 
         return $this;
     }
 
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
 
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
 }

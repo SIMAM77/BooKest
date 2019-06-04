@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Cercle;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Cercle|null find($id, $lockMode = null, $lockVersion = null)
- * @method Cercle|null findOneBy(array $criteria, array $orderBy = null)
- * @method Cercle[]    findAll()
- * @method Cercle[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Category|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Category|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Category[]    findAll()
+ * @method Category[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CercleRepository extends ServiceEntityRepository
+class CategoryRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Cercle::class);
+        parent::__construct($registry, Category::class);
     }
 
     // /**
-    //  * @return Cercle[] Returns an array of Cercle objects
+    //  * @return Category[] Returns an array of Category objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class CercleRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Cercle
+    public function findOneBySomeField($value): ?Category
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')

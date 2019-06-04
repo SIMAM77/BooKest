@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Livre;
+use App\Entity\Library;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Livre|null find($id, $lockMode = null, $lockVersion = null)
- * @method Livre|null findOneBy(array $criteria, array $orderBy = null)
- * @method Livre[]    findAll()
- * @method Livre[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Library|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Library|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Library[]    findAll()
+ * @method Library[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LivreRepository extends ServiceEntityRepository
+class LibraryRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Livre::class);
+        parent::__construct($registry, Library::class);
     }
 
     // /**
-    //  * @return Livre[] Returns an array of Livre objects
+    //  * @return Library[] Returns an array of Library objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class LivreRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Livre
+    public function findOneBySomeField($value): ?Library
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.exampleField = :val')

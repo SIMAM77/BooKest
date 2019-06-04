@@ -2,73 +2,77 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Book
- *
- * @ORM\Table(name="book")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  */
 class Book
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255, nullable=false, options={"default"="Titre inconnu"})
+     * @ORM\Column(type="string", length=255)
      */
-    private $title = 'Titre inconnu';
+    private $title;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="author", type="string", length=255, nullable=false, options={"default"="Auteur inconnu"})
+     * @ORM\Column(type="string", length=255)
      */
-    private $author = 'Auteur inconnu';
+    private $author;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="synopsis", type="text", length=0, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $synopsis;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="category", type="integer", nullable=false, options={"default"="1"})
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $category = '1';
+    private $category;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="isbn", type="bigint", nullable=false)
+     * @ORM\Column(type="bigint")
      */
     private $isbn;
 
     /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private $created_at;
 
     /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
-    private $updatedAt;
+    private $updated_at;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="books")
+     */
+    private $catgory;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Rate", mappedBy="book")
+     */
+    private $rates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="book")
+     */
+    private $comments;
+
+    public function __construct()
+    {
+        $this->rates = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -116,7 +120,7 @@ class Book
         return $this->category;
     }
 
-    public function setCategory(int $category): self
+    public function setCategory(?int $category): self
     {
         $this->category = $category;
 
@@ -137,27 +141,99 @@ class Book
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeInterface $created_at): self
     {
-        $this->createdAt = $createdAt;
+        $this->created_at = $created_at;
 
         return $this;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updatedAt;
+        return $this->updated_at;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updated_at = $updated_at;
 
         return $this;
     }
 
+    public function getCatgory(): ?Category
+    {
+        return $this->catgory;
+    }
 
+    public function setCatgory(?Category $catgory): self
+    {
+        $this->catgory = $catgory;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Rate[]
+     */
+    public function getRates(): Collection
+    {
+        return $this->rates;
+    }
+
+    public function addRate(Rate $rate): self
+    {
+        if (!$this->rates->contains($rate)) {
+            $this->rates[] = $rate;
+            $rate->setBook($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRate(Rate $rate): self
+    {
+        if ($this->rates->contains($rate)) {
+            $this->rates->removeElement($rate);
+            // set the owning side to null (unless already changed)
+            if ($rate->getBook() === $this) {
+                $rate->setBook(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setBook($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getBook() === $this) {
+                $comment->setBook(null);
+            }
+        }
+
+        return $this;
+    }
 }

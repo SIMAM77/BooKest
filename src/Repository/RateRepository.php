@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\RelationEmprunteurPreteur;
+use App\Entity\Rate;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method RelationEmprunteurPreteur|null find($id, $lockMode = null, $lockVersion = null)
- * @method RelationEmprunteurPreteur|null findOneBy(array $criteria, array $orderBy = null)
- * @method RelationEmprunteurPreteur[]    findAll()
- * @method RelationEmprunteurPreteur[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Rate|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Rate|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Rate[]    findAll()
+ * @method Rate[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RelationEmprunteurPreteurRepository extends ServiceEntityRepository
+class RateRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, RelationEmprunteurPreteur::class);
+        parent::__construct($registry, Rate::class);
     }
 
     // /**
-    //  * @return RelationEmprunteurPreteur[] Returns an array of RelationEmprunteurPreteur objects
+    //  * @return Rate[] Returns an array of Rate objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class RelationEmprunteurPreteurRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?RelationEmprunteurPreteur
+    public function findOneBySomeField($value): ?Rate
     {
         return $this->createQueryBuilder('r')
             ->andWhere('r.exampleField = :val')

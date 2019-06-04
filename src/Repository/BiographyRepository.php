@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\BiblioRue;
+use App\Entity\Biography;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method BiblioRue|null find($id, $lockMode = null, $lockVersion = null)
- * @method BiblioRue|null findOneBy(array $criteria, array $orderBy = null)
- * @method BiblioRue[]    findAll()
- * @method BiblioRue[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Biography|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Biography|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Biography[]    findAll()
+ * @method Biography[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class BiblioRueRepository extends ServiceEntityRepository
+class BiographyRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, BiblioRue::class);
+        parent::__construct($registry, Biography::class);
     }
 
     // /**
-    //  * @return BiblioRue[] Returns an array of BiblioRue objects
+    //  * @return Biography[] Returns an array of Biography objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class BiblioRueRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?BiblioRue
+    public function findOneBySomeField($value): ?Biography
     {
         return $this->createQueryBuilder('b')
             ->andWhere('b.exampleField = :val')

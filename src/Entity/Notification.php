@@ -2,52 +2,77 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Notification
- *
- * @ORM\Table(name="notification")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\NotificationRepository")
  */
 class Notification
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=45, nullable=false)
+     * @ORM\OneToOne(targetEntity="App\Entity\user", cascade={"persist", "remove"})
      */
-    private $title;
+    private $receiver;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="content", type="string", length=255, nullable=false)
+     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist", "remove"})
+     */
+    private $sender;
+
+    /**
+     * @ORM\Column(type="text")
      */
     private $content;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Share")
+     */
+    private $book;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+
+    public function __construct()
+    {
+        $this->book = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getReceiver(): ?user
     {
-        return $this->title;
+        return $this->receiver;
     }
 
-    public function setTitle(string $title): self
+    public function setReceiver(?user $receiver): self
     {
-        $this->title = $title;
+        $this->receiver = $receiver;
+
+        return $this;
+    }
+
+    public function getSender(): ?User
+    {
+        return $this->sender;
+    }
+
+    public function setSender(?User $sender): self
+    {
+        $this->sender = $sender;
 
         return $this;
     }
@@ -64,5 +89,41 @@ class Notification
         return $this;
     }
 
+    /**
+     * @return Collection|Share[]
+     */
+    public function getBook(): Collection
+    {
+        return $this->book;
+    }
 
+    public function addBook(Share $book): self
+    {
+        if (!$this->book->contains($book)) {
+            $this->book[] = $book;
+        }
+
+        return $this;
+    }
+
+    public function removeBook(Share $book): self
+    {
+        if ($this->book->contains($book)) {
+            $this->book->removeElement($book);
+        }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
 }
