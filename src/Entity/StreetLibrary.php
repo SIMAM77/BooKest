@@ -32,12 +32,12 @@ class StreetLibrary
     private $photo;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="string", length=255)
      */
     private $geolocalization;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $score;
 
@@ -87,24 +87,24 @@ class StreetLibrary
         return $this;
     }
 
-    public function getGeolocalization(): ?float
+    public function getGeolocalization(): ?string
     {
         return $this->geolocalization;
     }
 
-    public function setGeolocalization(float $geolocalization): self
+    public function setGeolocalization(string $geolocalization): self
     {
         $this->geolocalization = $geolocalization;
 
         return $this;
     }
 
-    public function getScore(): ?float
+    public function getScore(): ?int
     {
         return $this->score;
     }
 
-    public function setScore(?float $score): self
+    public function setScore(?int $score): self
     {
         $this->score = $score;
 
