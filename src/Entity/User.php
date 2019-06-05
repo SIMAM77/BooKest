@@ -5,6 +5,7 @@ namespace App\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\UserLibrary;
 
 /**
  * @ORM\Entity
@@ -19,9 +20,13 @@ class User extends BaseUser
      */
     protected $id;
 
-    public function __construct()
+    /**
+     * @ORM\OneToMany(targetEntity="UserLibrary", mappedBy="library")
+     */
+    protected $library;
+
+    public function getId(): ?int
     {
-        parent::__construct();
-        // your own logic
+        return $this->id;
     }
 }

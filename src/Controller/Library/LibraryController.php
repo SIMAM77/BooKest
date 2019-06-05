@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\HttpFoundation\Request;
-use App\Entity\Livre;
+use App\Entity\Book;
 
 class LibraryController extends Controller
 {
@@ -19,12 +19,12 @@ class LibraryController extends Controller
         $sSecret = "AIzaSyAhuwOyHCANRqaNa66WtUdyrfFtK2-7S9M";
 
         $oEm = $this->getDoctrine()->getManager();
-        $sQuery = $oEm->createQuery('SELECT l FROM App\Entity\Livre l');
+        $sQuery = $oEm->createQuery('SELECT b FROM App\Entity\Book b');
         $aResult = $sQuery->getResult();
 
-        $livre = new Livre();
+        $oBook = new Book();
 
-        // Si la requête est en POST
+        // if request is POST
         if ($request->isMethod('POST')) {
     
         $aIsbn = $request->request->all();
@@ -86,14 +86,12 @@ class LibraryController extends Controller
 
             }
 
-            $livre
+            $oBook
                 ->setTitle($title)
                 ->setAuthor($author)
                 ->setSynopsis($synopsis)
-                ->setIsbn($isbn)
-                ->setStatus("0")
-                ->setGenre($genre);
-            $oEm->persist($livre); 
+                ->setIsbn($isbn);
+            $oEm->persist($oBook);
             $oEm->flush();
             
             $request->getSession()->getFlashBag()->add('notice', 'Le livre a bien été ajouté à votre bibliothèque personnelle.');

@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Notification
+ * BookCategory
  *
- * @ORM\Table(name="notification")
+ * @ORM\Table(name="book_category")
  * @ORM\Entity
  */
-class Notification
+class BookCategory
 {
     /**
      * @var int
@@ -22,26 +22,28 @@ class Notification
     private $id;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="content", type="string", length=255, nullable=false)
+     * @ORM\Column(name="category", type="string", length=255, nullable=true)
      */
-    private $content;
+    private $category;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getContent(): ?string
+    public function getCategory(): ?string
     {
-        return $this->content;
+        return $this->category;
     }
 
-    public function setContent(string $content): self
+    public function setCategory(?string $category): self
     {
-        $this->content = $content;
+        $this->category = $category;
 
         return $this;
     }
+
+
 }
