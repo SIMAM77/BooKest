@@ -20,13 +20,13 @@ class Library
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="library", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Book", inversedBy="library", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $book;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="library", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="library")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

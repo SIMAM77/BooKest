@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -112,7 +113,7 @@ class ApiController extends Controller
      */
     public function getUserBooks(int $userId): View
     {
-        $o_book = $this->getDoctrine()->getRepository(User::class)->findOneBy(array('id' => $userId))->getBooks();
+        $o_book = $this->getDoctrine()->getRepository(Library::class)->findOneBy(array('user' => $userId))->getBook();
 
         if(empty($o_book)){
             return View::create("No book found.", Response::HTTP_NOT_FOUND);
@@ -286,11 +287,11 @@ class ApiController extends Controller
     }
 
     /**
-     * Set a book into a user library
+     * Set a rate
      * @Rest\View(statusCode=201)
-     * @Rest\Post("/book/{bookId}/rate/{rate}")
+     * @Rest\Post("/book/{bookId}/rate/{iRate}")
      */
-    public function setBookRate(Security $o_security, int $bookId): View
+    public function setBookRate(Security $o_security, int $iRate): View
     {
 
         $oEm = $this->getDoctrine()->getManager();
@@ -302,46 +303,46 @@ class ApiController extends Controller
             return View::create("User not logged in.", Response::HTTP_NOT_FOUND);
         } else {
 
-            $o_library = new Rate();
-            $o_user->setLibrary($o_library);
-            $o_library->addBook($o_book);
-            $o_library->setStatus(1);
+            $o_rate = new Rate();
+            $o_rate->setBook($o_book);
+            $o_rate->setUser($o_user);
+            $o_rate->setRate($iRate);
 
-            $oEm->persist($o_library);
-            $oEm->persist($o_user);
+            $oEm->persist($o_rate);
+            $oEm->persist($o_book);
 
             $oEm->flush();
-            return View::create("Book added to user's library", Response::HTTP_OK);
+            return View::create("Rate added", Response::HTTP_OK);
         }
     }
 
     /**
-     * Set a book into a user library
+     * Set a comment
      * @Rest\View(statusCode=201)
-     * @Rest\Post("/book/{bookId}/comment")
+     * @Rest\Post("/book/{bookId}/rate/{sComment}")
      */
-    public function setBookComment(Security $o_security, int $bookId): View
+    public function setBookComment(Security $o_security, int $sComment): View
     {
 
         $oEm = $this->getDoctrine()->getManager();
         $o_user = $this->security->getUser();
-        $o_book = $this->getDoctrine()->getRepository(Book::class)->findOneBy(array('id' => $bookId));
+        $o_book = $this->getDoctrine()->getRepository(Rate::class)->findOneBy(array('book' => $bookId));
 
         if(empty($o_user)){
 
             return View::create("User not logged in.", Response::HTTP_NOT_FOUND);
         } else {
 
-            $o_library = new Library();
-            $o_user->setLibrary($o_library);
-            $o_library->addBook($o_book);
-            $o_library->setStatus(1);
+            $o_comment = new Comment();
+            $o_comment->setBook($o_book);
+            $o_comment->setUser($o_user);
+            $o_comment->setComment($sComment);
 
-            $oEm->persist($o_library);
-            $oEm->persist($o_user);
+            $oEm->persist($o_comment);
+            $oEm->persist($o_book);
 
             $oEm->flush();
-            return View::create("Book added to user's library", Response::HTTP_OK);
+            return View::create("Comment added", Response::HTTP_OK);
         }
     }
 }
