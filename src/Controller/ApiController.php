@@ -295,14 +295,14 @@ class ApiController extends Controller
 
         $oEm = $this->getDoctrine()->getManager();
         $o_user = $this->security->getUser();
-        $o_book = $this->getDoctrine()->getRepository(Book::class)->findOneBy(array('id' => $bookId));
+        $o_book = $this->getDoctrine()->getRepository(Rate::class)->findOneBy(array('book' => $bookId));
 
         if(empty($o_user)){
 
             return View::create("User not logged in.", Response::HTTP_NOT_FOUND);
         } else {
 
-            $o_library = new Library();
+            $o_library = new Rate();
             $o_user->setLibrary($o_library);
             $o_library->addBook($o_book);
             $o_library->setStatus(1);
@@ -318,9 +318,9 @@ class ApiController extends Controller
     /**
      * Set a book into a user library
      * @Rest\View(statusCode=201)
-     * @Rest\Post("/setbook/{bookId}")
+     * @Rest\Post("/book/{bookId}/comment")
      */
-    public function setUserBook(Security $o_security, int $bookId): View
+    public function setBookComment(Security $o_security, int $bookId): View
     {
 
         $oEm = $this->getDoctrine()->getManager();
