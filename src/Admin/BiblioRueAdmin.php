@@ -10,29 +10,33 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-final class UserLibraryAdmin extends AbstractAdmin
+final class BiblioRueAdmin extends AbstractAdmin
 {
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
-            ->add('userId')
-            ->add('bookId')
-            ->add('status')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ;
+			->add('id')
+			->add('name')
+			->add('adress')
+			->add('photo')
+			->add('geolocalization')
+			->add('score')
+			->add('comments')
+			;
     }
 
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
-            ->add('userId')
-            ->add('bookId')
-            ->add('status')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('_action', null, [
+			->add('id')
+			->add('name')
+			->add('adress')
+			->add('photo')
+			->add('geolocalization')
+			->add('score')
+			->add('comments')
+			->add('_action', null, [
                 'actions' => [
                     'show' => [],
                     'edit' => [],
@@ -44,22 +48,25 @@ final class UserLibraryAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-            ->add('userId')
-            ->add('bookId')
-            ->add('status')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ;
+			->add('name')
+			->add('adress')
+			->add('photo')
+			->add('geolocalization')
+			->add('score')
+			->add('comments')
+			;
     }
 
     protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
-            ->add('userId')
-            ->add('bookId')
-            ->add('status')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ;
+			->add('id')
+			->add('name')
+			->add('adress')
+			->add('photo')
+			->add('geolocalization')
+			->add('score')
+			->add('comments')
+			;
     }
 }

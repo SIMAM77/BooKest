@@ -10,27 +10,23 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-final class BookCommentAdmin extends AbstractAdmin
+final class PlaceAdmin extends AbstractAdmin
 {
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
-            ->add('bookId')
-            ->add('userId')
-            ->add('content')
-            ->add('createdAt')
-            ;
+			->add('id')
+			->add('name')
+			;
     }
 
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
-            ->add('bookId')
-            ->add('userId')
-            ->add('content')
-            ->add('createdAt')
-            ->add('_action', null, [
+			->add('id')
+			->add('name')
+			->add('_action', null, [
                 'actions' => [
                     'show' => [],
                     'edit' => [],
@@ -42,20 +38,15 @@ final class BookCommentAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-            ->add('bookId')
-            ->add('userId')
-            ->add('content')
-            ->add('createdAt')
-            ;
+			->add('name')
+			;
     }
 
     protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
-            ->add('bookId')
-            ->add('userId')
-            ->add('content')
-            ->add('createdAt')
-            ;
+			->add('id')
+			->add('name')
+			;
     }
 }

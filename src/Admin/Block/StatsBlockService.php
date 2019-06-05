@@ -13,7 +13,7 @@ use Sonata\BlockBundle\Block\Service\AbstractBlockService;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage; 
 use Doctrine\ORM\EntityManager; 
  
-class StatsBlockService extends AbstractBlockService
+class StatsBlockService extends AbstractBlockService 
 { 
     /** * @var TokenStorage */
     protected $securityContext; 
@@ -46,11 +46,11 @@ class StatsBlockService extends AbstractBlockService
         $s_query = $em->createQuery('SELECT COUNT(u.id) FROM App\Entity\User u');
         $s_count_user = $s_query->getSingleScalarResult();
         
-        $s_query = $em->createQuery('SELECT COUNT(b.id) FROM App\Entity\Book b');
-        $s_count_book = $s_query->getSingleScalarResult();
+        $s_query = $em->createQuery('SELECT COUNT(l.id) FROM App\Entity\Livre l');
+        $s_count_livre = $s_query->getSingleScalarResult();
         
-        $s_query = $em->createQuery('SELECT COUNT(s.id) FROM App\Entity\Share s');
-        $s_count_share = $s_query->getSingleScalarResult();
+        $s_query = $em->createQuery('SELECT COUNT(rep.id) FROM App\Entity\RelationEmprunteurPreteur rep');
+        $s_count_relation = $s_query->getSingleScalarResult();
 
 //        $s_query = $em->createQuery('SELECT COUNT(c.id) FROM App\Entity\Contact c JOIN App\Entity\Contact c');
 //        $s_count_contact = $s_query->getSingleScalarResult();
@@ -60,8 +60,8 @@ class StatsBlockService extends AbstractBlockService
             'base_template'  => $this->pool->getTemplate('layout'),         
             'settings'       => $blockContext->getSettings(),
             'count_user'     => $s_count_user,
-            'count_book'    => $s_count_book,
-            'count_share' => $s_count_share,
+            'count_livre'    => $s_count_livre,
+            'count_relation' => $s_count_relation,
             //'count_contact'  => $s_count_contact,
         ), $response);
     }

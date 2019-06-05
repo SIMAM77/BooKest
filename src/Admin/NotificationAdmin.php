@@ -16,19 +16,29 @@ final class NotificationAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
-            ->add('id')
-            ->add('title')
-            ->add('content')
-            ;
+			->add('id')
+			->add('id_emprunteur')
+			->add('id_preteur')
+			->add('id_livre')
+			->add('date_start')
+			->add('date_end')
+			->add('status_emprunt')
+			->add('quantity')
+			;
     }
 
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
-            ->add('id')
-            ->add('title')
-            ->add('content')
-            ->add('_action', null, [
+			->add('id')
+			->add('id_emprunteur')
+			->add('id_preteur')
+			->add('id_livre')
+			->add('date_start')
+			->add('date_end')
+			->add('status_emprunt')
+			->add('quantity')
+			->add('_action', null, [
                 'actions' => [
                     'show' => [],
                     'edit' => [],
@@ -40,18 +50,27 @@ final class NotificationAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-            ->add('id')
-            ->add('title')
-            ->add('content')
-            ;
+			->add('id_emprunteur')
+			->add('id_preteur')
+			->add('id_livre')
+			->add('date_start')
+			->add('date_end')
+			->add('status_emprunt')
+			->add('quantity')
+			;
     }
 
     protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
-            ->add('id')
-            ->add('title')
-            ->add('content')
-            ;
+			->add('id')
+			->add('id_emprunteur')
+			->add('id_preteur')
+			->add('id_livre')
+			->add('date_start')
+			->add('date_end')
+			->add('status_emprunt')
+			->add('quantity')
+			;
     }
 }

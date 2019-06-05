@@ -1,5 +1,0 @@
-const compute = a => { result : a};
-console.log( compute( "HETIC" ));
-
-const compute = a => {return { result : a}};
-console.log( compute( "HETIC" ));
