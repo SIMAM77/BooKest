@@ -35,11 +35,6 @@ class Book
     private $synopsis;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $category;
-
-    /**
      * @ORM\Column(type="bigint")
      */
     private $isbn;
@@ -59,7 +54,7 @@ class Book
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="books")
      */
-    private $catgory;
+    private $category;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Rate", mappedBy="book")
@@ -118,18 +113,6 @@ class Book
         return $this;
     }
 
-    public function getCategory(): ?int
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?int $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getIsbn(): ?int
     {
         return $this->isbn;
@@ -152,14 +135,14 @@ class Book
         return $this->updated_at;
     }
 
-    public function getCatgory(): ?Category
+    public function getCategory(): ?Category
     {
-        return $this->catgory;
+        return $this->category;
     }
 
-    public function setCatgory(?Category $catgory): self
+    public function setCategory(?Category $category): self
     {
-        $this->catgory = $catgory;
+        $this->category = $category;
 
         return $this;
     }

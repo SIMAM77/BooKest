@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Book;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LibraryRepository")
@@ -19,12 +20,13 @@ class Library
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Book")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="library", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $book;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="library", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="library", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
@@ -44,28 +46,21 @@ class Library
         return $this->id;
     }
 
-    /**
-     * @return Collection|Book[]
-     */
-    public function getBook(): Collection
+    public function getBook(): Book
     {
         return $this->book;
     }
 
     public function addBook(Book $book): self
     {
-        if (!$this->book->contains($book)) {
-            $this->book[] = $book;
-        }
+        $this->book = $book;
 
         return $this;
     }
 
     public function removeBook(Book $book): self
     {
-        if ($this->book->contains($book)) {
-            $this->book->removeElement($book);
-        }
+        $this->book->removeElement($book);
 
         return $this;
     }
