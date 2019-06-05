@@ -1,4 +1,0 @@
-setName
-setAdress
-setGeolocalization
-setComments
