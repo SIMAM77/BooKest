@@ -10,35 +10,25 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-final class RelationEmprunteurPreteurAdmin extends AbstractAdmin
+final class UserBioAdmin extends AbstractAdmin
 {
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
-			->add('id')
-			->add('id_emprunteur')
-			->add('id_preteur')
-			->add('id_livre')
-			->add('date_start')
-			->add('date_end')
-			->add('status_emprunt')
-			->add('quantity')
-			;
+            ->add('userId')
+            ->add('avatarId')
+            ->add('biography')
+            ;
     }
 
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
-			->add('id')
-			->add('id_emprunteur')
-			->add('id_preteur')
-			->add('id_livre')
-			->add('date_start')
-			->add('date_end')
-			->add('status_emprunt')
-			->add('quantity')
-			->add('_action', null, [
+            ->add('userId')
+            ->add('avatarId')
+            ->add('biography')
+            ->add('_action', null, [
                 'actions' => [
                     'show' => [],
                     'edit' => [],
@@ -50,27 +40,18 @@ final class RelationEmprunteurPreteurAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-			->add('id_emprunteur')
-			->add('id_preteur')
-			->add('id_livre')
-			->add('date_start')
-			->add('date_end')
-			->add('status_emprunt')
-			->add('quantity')
-			;
+            ->add('userId')
+            ->add('avatarId')
+            ->add('biography')
+            ;
     }
 
     protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
-			->add('id')
-			->add('id_emprunteur')
-			->add('id_preteur')
-			->add('id_livre')
-			->add('date_start')
-			->add('date_end')
-			->add('status_emprunt')
-			->add('quantity')
-			;
+            ->add('userId')
+            ->add('avatarId')
+            ->add('biography')
+            ;
     }
 }

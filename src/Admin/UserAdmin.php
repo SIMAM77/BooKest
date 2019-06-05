@@ -16,37 +16,37 @@ final class UserAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
-			->add('username')
-			->add('usernameCanonical')
-			->add('email')
-			->add('emailCanonical')
-			->add('enabled')
-			->add('salt')
-			->add('password')
-			->add('lastLogin')
-			->add('confirmationToken')
-			->add('passwordRequestedAt')
-			->add('roles')
-			->add('id')
-			;
+            ->add('username')
+            ->add('usernameCanonical')
+            ->add('email')
+            ->add('emailCanonical')
+            ->add('enabled')
+            ->add('salt')
+            ->add('password')
+            ->add('lastLogin')
+            ->add('confirmationToken')
+            ->add('passwordRequestedAt')
+            ->add('roles')
+            ->add('id')
+            ;
     }
 
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
-			->add('username')
-			->add('usernameCanonical')
-			->add('email')
-			->add('emailCanonical')
-			->add('enabled')
-			->add('salt')
-			->add('password')
-			->add('lastLogin')
-			->add('confirmationToken')
-			->add('passwordRequestedAt')
-			->add('roles')
-			->add('id')
-			->add('_action', null, [
+            ->add('username')
+            ->add('usernameCanonical')
+            ->add('email')
+            ->add('emailCanonical')
+            ->add('enabled')
+            ->add('salt')
+            ->add('password')
+            ->add('lastLogin')
+            ->add('confirmationToken')
+            ->add('passwordRequestedAt')
+            ->add('roles')
+            ->add('id')
+            ->add('_action', null, [
                 'actions' => [
                     'show' => [],
                     'edit' => [],
@@ -58,35 +58,36 @@ final class UserAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-			->add('usernameCanonical')
-			->add('email')
-			->add('emailCanonical')
-			->add('enabled')
-			->add('salt')
-			->add('password')
-			->add('lastLogin')
-			->add('confirmationToken')
-			->add('passwordRequestedAt')
-			->add('roles')
-			->add('id')
-			;
+            ->add('username')
+            ->add('usernameCanonical')
+            ->add('email')
+            ->add('emailCanonical')
+            ->add('enabled')
+            ->add('salt')
+            ->add('password')
+            ->add('lastLogin')
+            ->add('confirmationToken')
+            ->add('passwordRequestedAt')
+            ->add('roles')
+            ->add('id')
+            ;
     }
 
     protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
-			->add('username')
-			->add('usernameCanonical')
-			->add('email')
-			->add('emailCanonical')
-			->add('enabled')
-			->add('salt')
-			->add('password')
-			->add('lastLogin')
-			->add('confirmationToken')
-			->add('passwordRequestedAt')
-			->add('roles')
-			->add('id')
-			;
+            ->add('username')
+            ->add('usernameCanonical')
+            ->add('email')
+            ->add('emailCanonical')
+            ->add('enabled')
+            ->add('salt')
+            ->add('password')
+            ->add('lastLogin')
+            ->add('confirmationToken')
+            ->add('passwordRequestedAt')
+            ->add('roles')
+            ->add('id')
+            ;
     }
 }

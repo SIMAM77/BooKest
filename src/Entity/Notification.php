@@ -5,138 +5,64 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\NotificationRepository")
+ * Notification
+ *
+ * @ORM\Table(name="notification")
+ * @ORM\Entity
  */
 class Notification
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=45, nullable=false)
      */
-    private $id_emprunteur;
+    private $title;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var string
+     *
+     * @ORM\Column(name="content", type="string", length=255, nullable=false)
      */
-    private $id_preteur;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_livre;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $date_start;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $date_end;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $status_emprunt;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $quantity;
+    private $content;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdEmprunteur(): ?int
+    public function getTitle(): ?string
     {
-        return $this->id_emprunteur;
+        return $this->title;
     }
 
-    public function setIdEmprunteur(int $id_emprunteur): self
+    public function setTitle(string $title): self
     {
-        $this->id_emprunteur = $id_emprunteur;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getIdPreteur(): ?int
+    public function getContent(): ?string
     {
-        return $this->id_preteur;
+        return $this->content;
     }
 
-    public function setIdPreteur(int $id_preteur): self
+    public function setContent(string $content): self
     {
-        $this->id_preteur = $id_preteur;
+        $this->content = $content;
 
         return $this;
     }
 
-    public function getIdLivre(): ?int
-    {
-        return $this->id_livre;
-    }
 
-    public function setIdLivre(int $id_livre): self
-    {
-        $this->id_livre = $id_livre;
-
-        return $this;
-    }
-
-    public function getDateStart(): ?\DateTimeInterface
-    {
-        return $this->date_start;
-    }
-
-    public function setDateStart(\DateTimeInterface $date_start): self
-    {
-        $this->date_start = $date_start;
-
-        return $this;
-    }
-
-    public function getDateEnd(): ?\DateTimeInterface
-    {
-        return $this->date_end;
-    }
-
-    public function setDateEnd(\DateTimeInterface $date_end): self
-    {
-        $this->date_end = $date_end;
-
-        return $this;
-    }
-
-    public function getStatusEmprunt(): ?string
-    {
-        return $this->status_emprunt;
-    }
-
-    public function setStatusEmprunt(string $status_emprunt): self
-    {
-        $this->status_emprunt = $status_emprunt;
-
-        return $this;
-    }
-
-    public function getQuantity(): ?int
-    {
-        return $this->quantity;
-    }
-
-    public function setQuantity(int $quantity): self
-    {
-        $this->quantity = $quantity;
-
-        return $this;
-    }
 }
