@@ -35,7 +35,7 @@ class StreetLibraryController extends Controller
         //     fclose($handle);
         // }
          // $entityManager = $this->getDoctrine()->getManager();
-         // foreach($tab_street as $item){
+         // foreach($tab_stlknlknreet as $item){
          //
          //     if($item[2] == 'PARIS' || $item[2] == 'Paris' || $item[2] == 'paris' ){
          //         $row++;
