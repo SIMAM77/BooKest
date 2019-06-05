@@ -47,8 +47,18 @@ class ApiController extends Controller
      */
     public function getApiUser(Security $o_security): View
     {
+        
         $o_user = $this->security->getUser();
+    }
 
+    /**
+     * Get the user actually logged
+     * @Rest\Get("/apiuser")
+     */
+    public function getApiUser(Security $o_security): View
+    {
+        $o_user = $this->security->getUser();
+        
         if(empty($o_user)){
             return View::create("No user found.", Response::HTTP_NOT_FOUND);
         } else {
